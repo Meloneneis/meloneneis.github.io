@@ -53,6 +53,7 @@ architecture for it. As there is already a lot good content available that expla
 just give a short refresher about how and why using a transformer-based architecture is such a good idea here.
 
 ## Bert: Transformer Encoder
+![Bert Architecture](/images/mlm.gif)
 Transformers made it possible to parallelize 
 - short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
 - building blocks of transformers (high level explanation of body and head, maybe decoder/encoder too), attention (medium level explanation), masked language modeling as training objective (medium level explanation)
