@@ -7,11 +7,20 @@ tags:
   - Protein Structure
   - Bioinformatics
 ---
-# Evolutionary-scale Prediction of Atomic Level Protein Structure with a Language Model
+# Learning Amino Acid Properties via a Language Model for Protein Folding
 
-## Introduction to Prediction of Protein Structures
+## AlphaFold2: 60-years long challenge solved
 
-Proteins provide many essential function in organisms (provide some good examples). Proteins comprises of 20 different types of amino acids linked together
+If you are a machine learning enthusiast like me, then you probably have heard about AlphaFold2. When DeepMind - the 
+team behind AlphaFold2 - first published their work, it made headlines all around the globe. Deservedly so, since it 
+provided a solution to a 60-years old grand challenge in biology, namely Protein Folding.
+
+So what was all the craze about, and why is this such a huge thing? To understand this, we have to dive deeper into the
+challenging task of Protein Folding.
+
+## Protein Folding
+Proteins are essential for the functioning of living organism(provide some good examples). 
+They comprise of 20 different types of amino acids linked together
 - these amino acids chains are folded leading to a specific shape
 - not the amino acid chain but the shapes will give insight on the specific functions of that protein (provide some use cases for predicting protein structures)
 - since the discovery around 50 years ago that the structure can be completely inferred by only the amino acid sequence,
@@ -19,12 +28,24 @@ scientists worked hard to predict the this structure from that sequence (techniq
 - despite their efforts only around 100000 unique proteins structures have been predicted experimentally
 - this showcases the complexity of such task, and the grand challenge it proposed
 - Critical Assessment of Structure Prediction (CASP), competition since 1994 for every two years to elevate and evaluate progress in protein structure prediction
+- show results of casp-14
 
-## AlphaFold: 50-years long challenge solved
-- introduce AlphaFold2 and mention how it (out)performed in CASP (show diagram) and what impact that had
+## AlphaFold2s novel architecture
+- introduce AlphaFold2 and mention how it (out)performed in CASP and what impact that had
 - write about how despite the vastly faster speed predicting protein structures computationally than experimentally, it still is not fast enough to catch up with large scale gene sequencing technology (used to determine protein sequences)
+- write about how its function, MSA, Evoformer, Structure Module
 
-## ESMFold: Need for Speed
+## The Need for Speed
+- write about the ever growing protein sequences database
+- easy and cheap to predict the primary structure
+What if we could just omit the need for Multiple Sequence Alignment altogether and thereby, remove the rather
+time-consuming search for evolutionarily related sequences? What if there is a way to incorporate such information in 
+a more end-to-end fashion? If you are a machine learning expert, or better an NLP expert even, you might know where 
+this is leading to. The answer to these questions is another language model that encapsulates all knowledge of amino 
+acids. You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? 
+
+
+## ESMFold to the Rescue
 - Need for Speed addressed by ESMFold (done by omitting the time consuming task of Multiple Sequence Alignment needed in AlphaFold)
 - high level explanation of Multiple Sequence Alignment and why AlphaFold incorperated that in their model
 - omitting this time consuming procedure could speed up the prediction of protein Structures
