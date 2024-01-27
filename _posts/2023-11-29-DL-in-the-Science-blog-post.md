@@ -9,7 +9,7 @@ tags:
 ---
 # Learning Amino Acid Properties via a Language Model for Protein Folding
 
-## AlphaFold2: 60-years long challenge solved
+## AlphaFold2: 60-years old challenge solved
 
 If you are a machine learning enthusiast like me, then you probably have heard about AlphaFold2. When DeepMind - the 
 team behind AlphaFold2 - first published their work, it made headlines all around the globe. Deservedly so, since it 
@@ -30,23 +30,39 @@ scientists worked hard to predict the this structure from that sequence (techniq
 - Critical Assessment of Structure Prediction (CASP), competition since 1994 for every two years to elevate and evaluate progress in protein structure prediction
 - show results of casp-14
 
-## AlphaFold2s novel architecture
+## AlphaFold2s Architecture
 - introduce AlphaFold2 and mention how it (out)performed in CASP and what impact that had
 - write about how despite the vastly faster speed predicting protein structures computationally than experimentally, it still is not fast enough to catch up with large scale gene sequencing technology (used to determine protein sequences)
 - write about how its function, MSA, Evoformer, Structure Module
 
-## The Need for Speed
-- write about the ever growing protein sequences database
-- easy and cheap to predict the primary structure
+## The Need for Speed and Independence
+As already mentioned, predicting the tertiary protein structure from the amino acid sequence experimentally is an expensive
+and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself isn't. This is show-cased
+by the ever-growing protein sequence databases. In other words, with AlphaFold2's inference speed it can't "catch up" 
+to the growing size of available primary amino acid sequences. This is primarily caused by the long search of similar 
+proteins during MSA. Furthermore, AlphaFold2 won't be able to handle novel protein sequences that well due to the lack
+of evolutionarily related sequences in databases.
+
 What if we could just omit the need for Multiple Sequence Alignment altogether and thereby, remove the rather
-time-consuming search for evolutionarily related sequences? What if there is a way to incorporate such information in 
-a more end-to-end fashion? If you are a machine learning expert, or better an NLP expert even, you might know where 
+time-consuming search and dependency for evolutionarily related sequences? What if there is a way to incorporate such information in 
+a more end-to-end fashion? If you are a machine learning expert, or even better an NLP expert, you might know where 
 this is leading to. The answer to these questions is another language model that encapsulates all knowledge of amino 
-acids. You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? 
+acids. You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? ESMFold - the
+work from Meta - did exactly that and to be more specific, they used the state-of-the-art transformer encoder 
+architecture for it. As there is already a lot good content available that explains how this architecture works, I will 
+just give a short refresher about how and why using a transformer-based architecture is such a good idea here.
 
+## Bert: Transformer Encoder
+Transformers made it possible to parallelize 
+- short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
+- building blocks of transformers (high level explanation of body and head, maybe decoder/encoder too), attention (medium level explanation), masked language modeling as training objective (medium level explanation)
+- also explain evaluation technique: perplexity
+- example on what attention does in the context of text (highlight how words can have different meanings depending on the context)
+- showcase use cases of transformers (new state of the art, used for a lot of diverse NLP tasks, e.g. text generation, language translation, summarization etc.)
 
-## ESMFold to the Rescue
-- Need for Speed addressed by ESMFold (done by omitting the time consuming task of Multiple Sequence Alignment needed in AlphaFold)
+## ESM-2: Bert for Amino Acids Sequences
+The team behind ESMFold 
+- Need for Speed addressed by ESMFold (done by omitting the time-consuming task of Multiple Sequence Alignment needed in AlphaFold)
 - high level explanation of Multiple Sequence Alignment and why AlphaFold incorperated that in their model
 - omitting this time consuming procedure could speed up the prediction of protein Structures
 - the question now is: without MSA can Protein Folding Models still compete with SOTA Models in terms of accuracy?
@@ -54,27 +70,20 @@ acids. You can think of it as a model that learns the language of proteins. Soun
 - experiments conducted to understand what their model learns at different scales (8M to 15B params) only trained on amino acid chains
 - Transition to transformer architecture: A foundational understanding necessary for evaluating ESMFold’s performance without MSA.
 
-## Transformers: the State-of-the-Art Language Model
 
-- short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
-- building blocks of transformers (high level explanation of body and head, maybe decoder/encoder too), attention (medium level explanation), masked language modeling as training objective (medium level explanation)
-- also explain evaluation technique: perplexity
-- example on what attention does in the context of text (highlight how words can have different meanings depending on the context)
-- showcase use cases of transformers (new state of the art, used for a lot of diverse NLP tasks, e.g. text generation, language translation, summarization etc.)
-
-
-## From Natural Language to the Language of Proteins: The Role of Transformers
-
-- transformers not limited to natural language
-- write about the idea of using transformers for predicting the protein structure (i.e. model learns patterns from amino sequences)
-- what about attention in amino sequences? (attention actually learns the residue-residue contact map, i.e. the closer a residue (amino acid in the protein sequence after binding) is to another attention the more it pays "attention" to that)
-- highlight the amazingness of the capabilities of transformers (it was NOT trained to do so!)
-- transition to contact map for protein 3LYW
-
-### Contact Map for Protein 3LYW
+## Contact Map for Protein 3LYW
 
 - ![Contact Map for Protein 3LYW](/images/Contact-Map.png) [Question: Using images from the paper allowed?]
 - describe map [unclear from the paper which model they used to make the predictions in contact, but I assume they used the biggest model to do the predictions, i.e. 15B params model]
+
+## Intuition on why it does work so well
+
+
+## What are the next steps?
+Understand the impact of Scale
+Attaching folding head to ESM-2
+
+
 
 ## From Millions to Billions Parameters: Understanding the Impact of Scale
 - short introduction to scaling and description of following sub-sections
@@ -108,4 +117,10 @@ acids. You can think of it as a model that learns the language of proteins. Soun
 ## Conclusion
 - draw conclusions from the comparison
 
+
+## Final Remark
+Unfortunately we won't see any further research conducted for ESMFold as the team behind that from fired from Meta.
+Meta wants to shift its attention to products that are commercializable and ESMFold just wasn't it. I think this is
+a quite unfortunate scenario as I believe works like this are really important to further elevate research into that field.
+- 
 ------
