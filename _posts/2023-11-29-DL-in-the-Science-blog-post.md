@@ -60,7 +60,10 @@ Self-attention is the key ingredient for the success of multiple
 
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
-  <figcaption>A training step via masked language modeling for one amino acid sequence (<b>animated</b>)</figcaption>
+  <figcaption>
+    A training step via masked language modeling for one amino acid sequence (<b>animated</b>) <br>
+    Optional templates removed from AlphaFold2 Architecture for simplicity.
+  </figcaption>
 </figure>
 
 Transformers made it possible to parallelize 
