@@ -31,10 +31,6 @@ scientists worked hard to predict the this structure from that sequence (techniq
 - show results of casp-14
 
 ## AlphaFold2s Architecture
-<figure>
-  <img src="/images/AlphaFold-Architecture.jpg" alt="AlphaFold2 Architecture">
-  <figcaption>AlphaFold2 Architecture</figcaption>
-</figure>
 - introduce AlphaFold2 and mention how it (out)performed in CASP and what impact that had
 - write about how despite the vastly faster speed predicting protein structures computationally than experimentally, it still is not fast enough to catch up with large scale gene sequencing technology (used to determine protein sequences)
 - write about how its function, MSA, Evoformer, Structure Module
@@ -101,9 +97,12 @@ Attaching folding head to ESM-2
 
 ## ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
 - mention how it is clear now by the prior done analysis that the model body is able to internalize evolutionarily patterns in Protein Folding
-- ![ESMFold architecture](/images/ESMFold-architecture.png)
 - explain the pipeline (what is the pair representation? what does the folding trunk do exactly?)
 - [Structure Module I will also explain only on high level, because authors did not go further into detail what it is. Question: Is that fine or should I include more details?]
+<figure>
+  <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
+  <figcaption>Comparison of ESMFold and AlphaFold2 Architecture (<b>animated</b>)</figcaption>
+</figure>
 
 ## Comparison to SOTA Models: AlphaFold-2 (and RosettaFold)
 - Explain metric used: TM-Score, LDDT
