@@ -65,10 +65,9 @@ we are just going to take a look at the encoder part of the transformers.
 Self-attention is the key ingredient for the success of multiple 
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
-  <figcaption>A training step for MLM for one amino acid sequence.</figcaption>
+  <figcaption>A training step via masked language modeling for one amino acid sequence (<b>animated</b>)</figcaption>
 </figure>
 
-![Bert Architecture](/images/mlm.gif)
 Transformers made it possible to parallelize 
 - short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
 - building blocks of transformers (high level explanation of body and head, maybe decoder/encoder too), attention (medium level explanation), masked language modeling as training objective (medium level explanation)
