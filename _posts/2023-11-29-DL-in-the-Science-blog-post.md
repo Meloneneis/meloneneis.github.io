@@ -11,12 +11,12 @@ tags:
 
 ## AlphaFold2: 60-years old challenge solved
 
-If you are a machine learning enthusiast like me, then you probably have heard about AlphaFold2. When DeepMind - the 
-team behind AlphaFold2 - first published their work, it made headlines all around the globe. Deservedly so, since it 
-provided a solution to a 60-years old grand challenge in biology, namely Protein Folding.
+If you're a machine learning enthusiast like me, you've probably heard of AlphaFold2. When DeepMind - the
+team behind AlphaFold2 - first published their work, it made headlines around the world. And rightly so, as it
+provided a solution to a 60-year-old grand challenge in biology, namely protein folding.
 
-So what was all the craze about, and why is this such a huge thing? To understand this, we have to dive deeper into the
-challenging task of Protein Folding.
+So what was all the fuss about, and why is it such a big deal? To understand, we need to take a closer look at the
+challenging task of protein folding.
 
 ## Protein Folding
 Proteins are essential for the functioning of living organism(provide some good examples). 
@@ -36,29 +36,28 @@ scientists worked hard to predict the this structure from that sequence (techniq
 - write about how its function, MSA, Evoformer, Structure Module
 
 ## The Need for Speed and Independence
-As already mentioned, predicting the tertiary protein structure from the amino acid sequence experimentally is an expensive
-and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself isn't. This is show-cased
-by the ever-growing protein sequence databases. In other words, with AlphaFold2's inference speed it can't "catch up" 
-to the growing size of available primary amino acid sequences. This is primarily caused by the long search of similar 
-proteins during MSA. Furthermore, AlphaFold2 won't be able to handle novel protein sequences that well due to the lack
-of evolutionarily related sequences in databases.
+As mentioned above, experimentally predicting the tertiary structure of a protein from its amino acid sequence is an expensive and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself, isn't. This is demonstrated
+by the ever-growing protein sequence databases. In other words, AlphaFold2's inference speed can't keep up with the
+growing size of the available primary amino acid sequences. This is mainly due to the time-consuming search for similar proteins during MSA. 
+In addition, AlphaFold2 won't be able to handle novel protein sequences as well due to the lack of evolutionarily related sequences in the database.
 
-What if we could just omit the need for Multiple Sequence Alignment altogether and thereby, remove the rather
-time-consuming search and dependency for evolutionarily related sequences? What if there is a way to incorporate such information in 
-a more end-to-end fashion? If you are a machine learning expert, or even better an NLP expert, you might know where 
-this is leading to. The answer to these questions is another language model that encapsulates all knowledge of amino 
-acids. You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? ESMFold - the
-work from Meta - did exactly that and to be more specific, they used the state-of-the-art transformer encoder 
-architecture for it. As there is already a lot good content available that explains how this architecture works, I will 
-just give a short refresher about how and why using a transformer-based architecture is such a good idea here.
+What if we could simply eliminate the need for multiple sequence alignment altogether, thus eliminating the rather time-consuming
+search and dependence on evolutionarily related sequences? What if there was a way to integrate such information in a more
+end-to-end fashion? If you are a machine learning expert, or even better an NLP expert, you might know where this is going.
+The answer to these questions is another language model that encapsulates all knowledge about amino acids.
+You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? ESMFold - the
+work by Meta - has done just that, and to be more precise, it has used the state-of-the-art Transformer Encoder
+architecture to do so. Since there is already a lot of good content explaining how this architecture works, I will just
+give a quick refresher on how and why using a transformer-based architecture is such a good idea here.
 
 ## Bert-style Transformer for ESM-2
-Transformers were introduced back in 2017 by the paper "Attention is all you need" from Vaswani et al. and up until now they remain the state-of-the-architecture for all sorts of
-domains such as in natural language, computer vision (vision transformers), and also in protein folding. The original
-transformers consists of an encoder and a decoder, using both on their own is possible with high success too. For protein folding
-we are just going to take a look at the encoder part of the transformers. 
+Transformers were already introduced in 2017 by the paper "Attention is all you need" by Vaswani et al. To date, they remain the state-of-the-art in all sorts of
+domains such as natural language, computer vision (vision transformers), and also protein folding. The original
+transformers consist of an encoder and a decoder, but it is also possible to use them alone with great success. For protein folding
+we will only look at the encoder part of the transformers.
 
 Self-attention is the key ingredient for the success of multiple 
+
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
   <figcaption>A training step via masked language modeling for one amino acid sequence (<b>animated</b>)</figcaption>
@@ -118,14 +117,14 @@ Attaching folding head to ESM-2
 - write about potential advancements possible made by knowing the structure of metagenomic proteins
 
 ## Conclusion
-AlphaFold2 is better across all datasets than ESMFold. However, the dependency of MSA for AlphaFold2 hinders its performance
-for novel protein sequences. This was especially highlighted by the ablation study where no evolutionarily related protein
-sequences where taken into account, i.e. mimicking a novel sequences. Moreover, ESMFold's speed up in folding makes it easier to
-"catch up" to the ever-growing size of primary protein sequences available.
+AlphaFold2 outperforms ESMFold across all datasets. However, the reliance on MSA for AlphaFold2 hampers its performance for
+for novel protein sequences. This was particularly evident in the ablation study, where no evolutionarily related protein
+sequences were considered, i.e. mimicking a novel protein sequence. In addition, ESMFold's folding speed makes it easier to
+"to keep pace with the ever-increasing amount of primary protein sequences available, and is therefore able to create the first metagenomic database.
 
-Overall, taking the route of using a LLM for the Protein Knowledge is a valid alternative to the genetic database search for MSA.
-However though, training such transformer-encoder model via MLM doesn't seem to extract the all the evolutionarily related information available,
-but given the high-complex protein folding task, such a simple pre-training objective performs better than one would expect.
+Overall, the use of an LLM for protein knowledge is a valid alternative to genetic database searches for MSA.
+However, training such a transformer-encoder model via MLM doesn't seem to extract all the evolutionarily relevant information available,
+but given the highly complex protein folding task, such a simple pre-training objective performs better than one would expect.
 
 
 ## Final Remark
