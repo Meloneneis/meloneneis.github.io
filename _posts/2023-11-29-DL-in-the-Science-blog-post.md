@@ -133,5 +133,4 @@ Meta wants to focus on products that can be commercialised and ESMFold just wasn
 rather unfortunate scenario, as I suspect that ESMFold2 was never meant to be the end of it. My reasoning stems from the
 simple pre-training objective and the standard BERT architecture. For instance, further research could have been done to create a 
 more sophisticated pre-training objective that incorporates biological properties better than standard MLM.
-- 
 ------
