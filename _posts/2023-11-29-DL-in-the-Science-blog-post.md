@@ -31,6 +31,10 @@ scientists worked hard to predict the this structure from that sequence (techniq
 - show results of casp-14
 
 ## AlphaFold2s Architecture
+<figure>
+  <img src="/images/AlphaFold-Architecture.jpg" alt="AlphaFold2 Architecture">
+  <figcaption>AlphaFold2 Architecture</figcaption>
+</figure>
 - introduce AlphaFold2 and mention how it (out)performed in CASP and what impact that had
 - write about how despite the vastly faster speed predicting protein structures computationally than experimentally, it still is not fast enough to catch up with large scale gene sequencing technology (used to determine protein sequences)
 - write about how its function, MSA, Evoformer, Structure Module
@@ -52,7 +56,18 @@ work from Meta - did exactly that and to be more specific, they used the state-o
 architecture for it. As there is already a lot good content available that explains how this architecture works, I will 
 just give a short refresher about how and why using a transformer-based architecture is such a good idea here.
 
-## Bert: Transformer Encoder
+## Bert-style Transformer for ESM-2
+Transformers were introduced back in 2017 by the paper "Attention is all you need" from Vaswani et al. and up until now they remain the state-of-the-architecture for all sorts of
+domains such as in natural language, computer vision (vision transformers), and also in protein folding. The original
+transformers consists of an encoder and a decoder, using both on their own is possible with high success too. For protein folding
+we are just going to take a look at the encoder part of the transformers. 
+
+Self-attention is the key ingredient for the success of multiple 
+<figure>
+  <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
+  <figcaption>A training step for MLM for one amino acid sequence.</figcaption>
+</figure>
+
 ![Bert Architecture](/images/mlm.gif)
 Transformers made it possible to parallelize 
 - short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
@@ -60,17 +75,6 @@ Transformers made it possible to parallelize
 - also explain evaluation technique: perplexity
 - example on what attention does in the context of text (highlight how words can have different meanings depending on the context)
 - showcase use cases of transformers (new state of the art, used for a lot of diverse NLP tasks, e.g. text generation, language translation, summarization etc.)
-
-## ESM-2: Bert for Amino Acids Sequences
-The team behind ESMFold 
-- Need for Speed addressed by ESMFold (done by omitting the time-consuming task of Multiple Sequence Alignment needed in AlphaFold)
-- high level explanation of Multiple Sequence Alignment and why AlphaFold incorperated that in their model
-- omitting this time consuming procedure could speed up the prediction of protein Structures
-- the question now is: without MSA can Protein Folding Models still compete with SOTA Models in terms of accuracy?
-- Meta addressed this question in their ESM-2 paper by scaling up to the biggest protein model ever trained (15B params)
-- experiments conducted to understand what their model learns at different scales (8M to 15B params) only trained on amino acid chains
-- Transition to transformer architecture: A foundational understanding necessary for evaluating ESMFold’s performance without MSA.
-
 
 ## Contact Map for Protein 3LYW
 
