@@ -118,12 +118,21 @@ Attaching folding head to ESM-2
 - write about potential advancements possible made by knowing the structure of metagenomic proteins
 
 ## Conclusion
-- draw conclusions from the comparison
+AlphaFold2 is better across all datasets than ESMFold. However, the dependency of MSA for AlphaFold2 hinders its performance
+for novel protein sequences. This was especially highlighted by the ablation study where no evolutionarily related protein
+sequences where taken into account, i.e. mimicking a novel sequences. Moreover, ESMFold's speed up in folding makes it easier to
+"catch up" to the ever-growing size of primary protein sequences available.
+
+Overall, taking the route of using a LLM for the Protein Knowledge is a valid alternative to the genetic database search for MSA.
+However though, training such transformer-encoder model via MLM doesn't seem to extract the all the evolutionarily related information available,
+but given the high-complex protein folding task, such a simple pre-training objective performs better than one would expect.
 
 
 ## Final Remark
-Unfortunately we won't see any further research conducted for ESMFold as the team behind that from fired from Meta.
-Meta wants to shift its attention to products that are commercializable and ESMFold just wasn't it. I think this is
-a quite unfortunate scenario as I believe works like this are really important to further elevate research into that field.
+Unfortunately, we won't be seeing any further research on ESMFold, as the <a href="https://aibusiness.com/nlp/meta-lays-off-team-behind-its-protein-folding-model">team behind it has been completely let go from Meta</a>.
+Meta wants to focus on products that can be commercialised and ESMFold just wasn't it. I think this is
+rather unfortunate scenario, as I suspect that ESMFold2 was never meant to be the end of it. My reasoning stems from the
+simple pre-training objective and the standard BERT architecture. For instance, further research could have been done to create a 
+more sophisticated pre-training objective that incorporates biological properties better than standard MLM.
 - 
 ------
