@@ -74,7 +74,7 @@ So coming back to ESM-2 where we don't do MSA. During MLM the model tries to pre
 all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
 achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
 
-Example of the role of charges in amino acids during masked language modeling.
+- Give an example: the role of charges in amino acids during masked language modeling
 
 ## What are the next steps?
 ### From Millions to Billions Parameters: Understanding the Impact of Scale
