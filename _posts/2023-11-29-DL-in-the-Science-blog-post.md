@@ -76,12 +76,13 @@ achieved if the model learns biological properties of each amino acids. Let me g
 
 - Give an example: the role of charges in amino acids during masked language modeling
 
-## What are the next steps?
-### From Millions to Billions Parameters: Understanding the Impact of Scale
-- ![Comparison](/images/Scale.jpg) [describe and interpret]
-- ![Comparison](/images/Scale2.jpg) [describe and interpret]
+## From Millions to Billions Parameters: Understanding the Impact of Scale
+![Comparison](/images/Scale.jpg) 
+[describe and interpret]
+![Comparison](/images/Scale2.jpg) 
+[describe and interpret]
 
-### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
+## ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
 - mention that the head is adopted version of AlphaFold2 
 - structure module same, Folding block is simplified version of Evoformer
 - simplified because seq represention is only one dimensional and in AlphaFold2 it is two dimensional (due to MSA), so for AlphaFold2
