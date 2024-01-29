@@ -104,7 +104,7 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 - prediction of over 617M sequences
 - mention the different confidence levels on these sequences
 - write about potential advancements possible made by knowing the structure of metagenomic proteins
-- link of official blogpost for ESM Metagenomic Atlas: https://ai.meta.com/blog/protein-folding-esmfold-metagenomics/
+- link of official blogpost for ESM Metagenomic Atlas: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>
 
 ## Conclusion
 AlphaFold2 outperforms ESMFold across all datasets. However, the reliance on MSA for AlphaFold2 hampers its performance for
