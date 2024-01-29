@@ -19,21 +19,17 @@ So what was all the fuss about, and why is it such a big deal? To understand, we
 challenging task of protein folding.
 
 ## Protein Folding
-Proteins are essential for the functioning of living organism(provide some good examples). 
-They comprise of 20 different types of amino acids linked together
-- these amino acids chains are folded leading to a specific shape
-- not the amino acid chain but the shapes will give insight on the specific functions of that protein (provide some use cases for predicting protein structures)
-- since the discovery around 50 years ago that the structure can be completely inferred by only the amino acid sequence,
-scientists worked hard to predict the this structure from that sequence (techniques: magnetic resonance (NMR),5 X-ray crystallography,6 and cryo-electron microscopy (cryo-EM))
-- despite their efforts only around 100000 unique proteins structures have been predicted experimentally
-- this showcases the complexity of such task, and the grand challenge it proposed
-- Critical Assessment of Structure Prediction (CASP), competition since 1994 for every two years to elevate and evaluate progress in protein structure prediction
-- show results of casp-14
+- Protein Definition and Examples
+- Tertiary Shape from primary shape
+- experimental methods for determining proteins (EM-Cryo...)
+- caveats of experimental methods
+- CASP
+- AlphaFold2
 
-## AlphaFold2s Architecture
-- introduce AlphaFold2 and mention how it (out)performed in CASP and what impact that had
-- write about how despite the vastly faster speed predicting protein structures computationally than experimentally, it still is not fast enough to catch up with large scale gene sequencing technology (used to determine protein sequences)
-- write about how its function, MSA, Evoformer, Structure Module
+## AlphaFold2 to the rescue
+- advantages of AlphaFold2 vs experimental methods
+- write about novel architecture (high-level)
+- write that AlphaFold2 is not perfect and transition to next section
 
 ## The Need for Speed and Independence
 As mentioned above, experimentally predicting the tertiary structure of a protein from its amino acid sequence is an expensive and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself, isn't. This is demonstrated
@@ -56,61 +52,49 @@ domains such as natural language, computer vision (vision transformers), and als
 transformers consist of an encoder and a decoder, but it is also possible to use them alone with great success. For protein folding
 we will only look at the encoder part of the transformers.
 
-Self-attention is the key ingredient for the success of multiple 
+Self-attention is the key ingredient for the success of multiple ...
 
+Masked Language Modeling is the pre-training task...
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
   <figcaption>
-    A training step via masked language modeling for one amino acid sequence (<b>animated</b>) <br>
-    Optional templates removed from AlphaFold2 Architecture for simplicity.
+    A training step via masked language modeling for one amino acid sequence (<b>animated</b>)
   </figcaption>
 </figure>
 
-Transformers made it possible to parallelize 
-- short introduction to Transformers (before word embeddings, but static, now dynamic due to attention)
-- building blocks of transformers (high level explanation of body and head, maybe decoder/encoder too), attention (medium level explanation), masked language modeling as training objective (medium level explanation)
-- also explain evaluation technique: perplexity
-- example on what attention does in the context of text (highlight how words can have different meanings depending on the context)
-- showcase use cases of transformers (new state of the art, used for a lot of diverse NLP tasks, e.g. text generation, language translation, summarization etc.)
-
 ## Contact Map for Protein 3LYW
 
-- ![Contact Map for Protein 3LYW](/images/Contact-Map.png) [Question: Using images from the paper allowed?]
-- describe map [unclear from the paper which model they used to make the predictions in contact, but I assume they used the biggest model to do the predictions, i.e. 15B params model]
+
 
 ## Intuition on why it does work so well
+To understand how the contact map can be so well predicted for proteins, we first have to understand what the ESM-2 model replaces, namely MSA.
+In MSA, when there are lots of evolutionarily related sequences available, it ...
 
+So coming back to ESM-2 where we don't do MSA. During MLM the model tries to predict masked amino acids. And to decrease the loss, it has to do well on
+all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
+achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
+
+Example of the role of charges in amino acids during masked language modeling.
 
 ## What are the next steps?
-Understand the impact of Scale
-Attaching folding head to ESM-2
-
-
-
-## From Millions to Billions Parameters: Understanding the Impact of Scale
-- short introduction to scaling and description of following sub-sections
-- MENTION that the following experiments are conducted to highlight the capabilities of the models body (i.e. ESM-2, the base model with no (sophisticated) head attached)
-### Impact of number of evolutionarily related sequences in training data
-- ![Figure 1B](/images/Figure1BC.png) [describe and interpret]
-### Correlation between Language Perplexity and contact accuracy
-- ![Figure 1D](/images/Figure1D.png) [describe and interpret]
-### Performance on Protein Structure Predictions at Atomic Resolution
-- ![Figure 1E](/images/Figure1E.png) [describe and interpret]
-
-## ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
-- mention how it is clear now by the prior done analysis that the model body is able to internalize evolutionarily patterns in Protein Folding
-- ![ESMFold architecture](/images/ESMFold-architecture.png)
-- explain the pipeline (what is the pair representation? what does the folding trunk do exactly?)
-- [Structure Module I will also explain only on high level, because authors did not go further into detail what it is. Question: Is that fine or should I include more details?]
+### From Millions to Billions Parameters: Understanding the Impact of Scale
+- ![Comparison](/images/Scale.jpg) [describe and interpret]
+- ![Comparison](/images/Scale2.jpg) [describe and interpret]
+### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
+- mention that the head is adopted version of AlphaFold2 
+- structure module same, Folding block is simplified version of Evoformer
+- simplified because seq represention is only one dimensional and in AlphaFold2 it is two dimensional (due to MSA), so for AlphaFold2
+we need axial attention whereas in ESMFold we only need normal self-attention
+- ESM-2 equivalent to MSA in terms of use case
 <figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
-  <figcaption>Comparison of ESMFold and AlphaFold2 Architecture (<b>animated</b>)</figcaption>
+  <figcaption>Comparison of ESMFold and AlphaFold2 Architecture (<b>animated</b>)<br>Optional templates removed from AlphaFold2 Architecture for simplicity.</figcaption>
 </figure>
+
 ## Comparison to SOTA Models: AlphaFold-2 (and RosettaFold)
 - Explain metric used: TM-Score, LDDT
 - shortly describe the datasets used: CASP-14 and CAMEO
-- ![Comparison](/images/Comparison) [describe and interpret]
-- ![Figure2C](/images/Figure2C) [describe and interpret]
+- ![Comparison](/images/Comparison.jpg) [describe and interpret]
 - maybe mention some limitation due to worse performance especially in CASP-14
 
 ## Scientific Contribution: ESM Metagenomic Atlas
@@ -118,6 +102,7 @@ Attaching folding head to ESM-2
 - prediction of over 617M sequences
 - mention the different confidence levels on these sequences
 - write about potential advancements possible made by knowing the structure of metagenomic proteins
+- link of official blogpost for ESM Metagenomic Atlas: https://ai.meta.com/blog/protein-folding-esmfold-metagenomics/
 
 ## Conclusion
 AlphaFold2 outperforms ESMFold across all datasets. However, the reliance on MSA for AlphaFold2 hampers its performance for
@@ -136,4 +121,5 @@ Meta wants to focus on products that can be commercialised and ESMFold just wasn
 rather unfortunate scenario, as I suspect that ESMFold2 was never meant to be the end of it. My reasoning stems from the
 simple pre-training objective and the standard BERT architecture. For instance, further research could have been done to create a 
 more sophisticated pre-training objective that incorporates biological properties better than standard MLM.
+
 ------
