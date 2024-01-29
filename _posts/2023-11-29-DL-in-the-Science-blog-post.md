@@ -63,8 +63,8 @@ Masked Language Modeling is the pre-training task...
 </figure>
 
 ## Contact Map for Protein 3LYW
-
-
+![Comparison](/images/contactmap.jpg) 
+[describe and interpret]
 
 ## Intuition on why it does work so well
 To understand how the contact map can be so well predicted for proteins, we first have to understand what the ESM-2 model replaces, namely MSA.
