@@ -108,9 +108,9 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 
 ## Conclusion
 AlphaFold2 outperforms ESMFold across all datasets. However, the reliance on MSA for AlphaFold2 hampers its performance for
-for novel protein sequences. This was particularly evident in the ablation study, where no evolutionarily related protein
+ novel protein sequences. This was particularly evident in the ablation study, where no evolutionarily related protein
 sequences were considered, i.e. mimicking a novel protein sequence. In addition, ESMFold's folding speed makes it easier to
-"to keep pace with the ever-increasing amount of primary protein sequences available, and is therefore able to create the first metagenomic database.
+keep pace with the ever-increasing amount of primary protein sequences available, and is therefore able to create the first metagenomic database.
 
 Overall, the use of an LLM for protein knowledge is a valid alternative to genetic database searches for MSA.
 However, training such a transformer-encoder model via MLM doesn't seem to extract all the evolutionarily relevant information available,
