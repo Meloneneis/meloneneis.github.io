@@ -96,8 +96,8 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 ## Comparison to SOTA Models: AlphaFold-2 (and RosettaFold)
 - Explain metric used: TM-Score, LDDT
 - shortly describe the datasets used: CASP-14 and CAMEO
-- ![Comparison](/images/Comparison.jpg) [describe and interpret]
 - maybe mention some limitation due to worse performance especially in CASP-14
+![Comparison](/images/Comparison.jpg) [describe and interpret]
 
 ## Scientific Contribution: ESM Metagenomic Atlas
 - explain what metagenomic is and why sequence prediction was not done until this paper (metagenomic proteins not well studied, as this was not first priority when experimentally predicting structures -> no multiple sequence alignment possible)
