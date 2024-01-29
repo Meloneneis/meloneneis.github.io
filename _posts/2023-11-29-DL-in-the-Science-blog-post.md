@@ -94,9 +94,9 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 </figure>
 
 ## Comparison to SOTA Models: AlphaFold-2 (and RosettaFold)
-- Explain metric used: TM-Score, LDDT
+- Explain metric used: TM-Score
 - shortly describe the datasets used: CASP-14 and CAMEO
-- maybe mention some limitation due to worse performance especially in CASP-14
+- maybe mention some limitation due to worse performance especially in CASP-14 (Casp is competition, usually in competitions things are made difficult, i.e. complex protein structure used)
 ![Comparison](/images/Comparison.jpg) [describe and interpret]
 
 ## Scientific Contribution: ESM Metagenomic Atlas
