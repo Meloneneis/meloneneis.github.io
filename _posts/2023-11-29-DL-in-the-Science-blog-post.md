@@ -80,6 +80,7 @@ achieved if the model learns biological properties of each amino acids. Let me g
 ### From Millions to Billions Parameters: Understanding the Impact of Scale
 - ![Comparison](/images/Scale.jpg) [describe and interpret]
 - ![Comparison](/images/Scale2.jpg) [describe and interpret]
+
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
 - mention that the head is adopted version of AlphaFold2 
 - structure module same, Folding block is simplified version of Evoformer
