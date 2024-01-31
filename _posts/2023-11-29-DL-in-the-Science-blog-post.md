@@ -81,8 +81,18 @@ Transformers made it possible to parallelize
 - describe map [unclear from the paper which model they used to make the predictions in contact, but I assume they used the biggest model to do the predictions, i.e. 15B params model]
 
 ## Intuition on why it does work so well
-
-
+<figure>
+  <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
+  <figcaption>Coevolution and Evolutionarily Conversation of Residues</figcaption>
+</figure>
+<figure>
+  <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
+  <figcaption>Coevolution of Residues in Amino Acid Sequences</figcaption>
+</figure>
+<figure>
+  <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
+  <figcaption>Extracting Properties of Amino Acids during MLM</figcaption>
+</figure>
 ## What are the next steps?
 Understand the impact of Scale
 Attaching folding head to ESM-2
