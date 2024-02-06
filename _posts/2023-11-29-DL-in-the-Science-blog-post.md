@@ -87,7 +87,7 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 - ESM-2 equivalent to MSA in terms of use case
 <figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
-  <figcaption>Fig. 2 <b>(animated and own creation except for Protein Structure Image)</b></figcaption>
+  <figcaption>Fig. 2 <b>(animated and own creation, but Protein Structure from paper)</b></figcaption>
 </figure>
 
 ### Understanding the behind-the-scenes: an intuitive Perspective
@@ -99,11 +99,11 @@ all the amino acid sequences we are giving it during training, i.e. it has to do
 achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
 <div style="display: flex;">
   <figure style="width:25%; margin-right: 10px;">
-    <img src="https://example.com/image1.gif" alt="AlphaFold2 Architecture">
+    <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
     <figcaption>Fig. 3 <b>(animated and own creation)</b></figcaption>
   </figure>
   <figure style="width:25%;">
-    <img src="https://example.com/image2.gif" alt="AlphaFold2 Architecture">
+    <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
     <figcaption>Fig. 4 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
