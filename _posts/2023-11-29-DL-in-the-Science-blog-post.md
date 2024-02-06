@@ -78,6 +78,7 @@ Masked Language Modeling is the pre-training task...
   </figcaption>
 </figure>
 
+## Experiment Results of ESM-2 and ESMFold
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
 - mention that the head is adopted version of AlphaFold2 
 - structure module same, Folding block is simplified version of Evoformer
@@ -96,14 +97,17 @@ In MSA, when there are lots of evolutionarily related sequences available, it ..
 So coming back to ESM-2 where we don't do MSA. During MLM the model tries to predict masked amino acids. And to decrease the loss, it has to do well on
 all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
 achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
-<figure style="width:25%;">
-  <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
-  <figcaption>Coevolution and Evolutionarily Conversation of Residues</figcaption>
-</figure>
-<figure style="width:25%;">
-  <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
-  <figcaption>Coevolution of Residues in Amino Acid Sequences</figcaption>
-</figure>
+<div style="display: flex;">
+  <figure style="width:25%; margin-right: 10px;">
+    <img src="https://example.com/image1.gif" alt="AlphaFold2 Architecture">
+    <figcaption>Coevolution and Evolutionarily Conversation of Residues</figcaption>
+  </figure>
+  <figure style="width:25%;">
+    <img src="https://example.com/image2.gif" alt="AlphaFold2 Architecture">
+    <figcaption>Coevolution of Residues in Amino Acid Sequences</figcaption>
+  </figure>
+</div>
+
 <figure style="width:25%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
   <figcaption>Extracting Properties of Amino Acids during MLM</figcaption>
