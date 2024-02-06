@@ -74,7 +74,7 @@ Masked Language Modeling is the pre-training task...
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
   <figcaption>
-    A training step via masked language modeling for one amino acid sequence (<b>animated</b>)
+    Fig. 1 <b>(animated and own creation)</b>
   </figcaption>
 </figure>
 
@@ -87,7 +87,7 @@ we need axial attention whereas in ESMFold we only need normal self-attention
 - ESM-2 equivalent to MSA in terms of use case
 <figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
-  <figcaption>Comparison of ESMFold and AlphaFold2 Architecture (<b>animated</b>)<br>Optional templates removed from AlphaFold2 Architecture for simplicity.</figcaption>
+  <figcaption>Fig. 2 <b>(animated and own creation except for Protein Structure Image)</b></figcaption>
 </figure>
 
 ### Understanding the behind-the-scenes: an intuitive Perspective
@@ -100,17 +100,17 @@ achieved if the model learns biological properties of each amino acids. Let me g
 <div style="display: flex;">
   <figure style="width:25%; margin-right: 10px;">
     <img src="https://example.com/image1.gif" alt="AlphaFold2 Architecture">
-    <figcaption>Coevolution and Evolutionarily Conversation of Residues</figcaption>
+    <figcaption>Fig. 3 <b>(animated and own creation)</b></figcaption>
   </figure>
   <figure style="width:25%;">
     <img src="https://example.com/image2.gif" alt="AlphaFold2 Architecture">
-    <figcaption>Coevolution of Residues in Amino Acid Sequences</figcaption>
+    <figcaption>Fig. 4 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
 
 <figure style="width:25%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
-  <figcaption>Extracting Properties of Amino Acids during MLM</figcaption>
+  <figcaption>Fig. 5 <b>(animated and own creation)</b></figcaption>
 </figure>
 
 
