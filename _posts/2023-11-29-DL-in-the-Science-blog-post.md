@@ -98,17 +98,17 @@ So coming back to ESM-2 where we don't do MSA. During MLM the model tries to pre
 all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
 achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
 <div style="display: flex;">
-  <figure style="width:25%; margin-right: 10px;">
+  <figure style="width:35%; margin-right: 10px;">
     <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
     <figcaption style="text-align: center;">Fig. 3 <b>(animated and own creation)</b></figcaption>
   </figure>
-  <figure style="width:25%; text-align: center">
+  <figure style="width:35%; text-align: center">
     <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
     <figcaption style="text-align: center;">Fig. 4 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
 
-<figure style="width:25%;">
+<figure style="width:35%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
   <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
 </figure>
