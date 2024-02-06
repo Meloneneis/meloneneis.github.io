@@ -73,7 +73,7 @@ Self-attention is the key ingredient for the success of multiple ...
 Masked Language Modeling is the pre-training task...
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
-  <figcaption>
+  <figcaption style="text-align: center;">
     Fig. 1 <b>(animated and own creation)</b>
   </figcaption>
 </figure>
@@ -85,7 +85,7 @@ Masked Language Modeling is the pre-training task...
 - simplified because seq represention is only one dimensional and in AlphaFold2 it is two dimensional (due to MSA), so for AlphaFold2
 we need axial attention whereas in ESMFold we only need normal self-attention
 - ESM-2 equivalent to MSA in terms of use case
-<figure>
+<figure style="text-align: center;">
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
   <figcaption>Fig. 2 <b>(animated and own creation, but Protein Structure from paper)</b></figcaption>
 </figure>
@@ -100,17 +100,17 @@ achieved if the model learns biological properties of each amino acids. Let me g
 <div style="display: flex;">
   <figure style="width:25%; margin-right: 10px;">
     <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
-    <figcaption>Fig. 3 <b>(animated and own creation)</b></figcaption>
+    <figcaption style="text-align: center;">Fig. 3 <b>(animated and own creation)</b></figcaption>
   </figure>
-  <figure style="width:25%;">
+  <figure style="width:25%; text-align: center">
     <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
-    <figcaption>Fig. 4 <b>(animated and own creation)</b></figcaption>
+    <figcaption style="text-align: center;">Fig. 4 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
 
 <figure style="width:25%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
-  <figcaption>Fig. 5 <b>(animated and own creation)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
 </figure>
 
 
