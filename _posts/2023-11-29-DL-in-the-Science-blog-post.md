@@ -96,8 +96,19 @@ In MSA, when there are lots of evolutionarily related sequences available, it ..
 So coming back to ESM-2 where we don't do MSA. During MLM the model tries to predict masked amino acids. And to decrease the loss, it has to do well on
 all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
 achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
+<figure style="width:25%;">
+  <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
+  <figcaption>Coevolution and Evolutionarily Conversation of Residues</figcaption>
+</figure>
+<figure style="width:25%;">
+  <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
+  <figcaption>Coevolution of Residues in Amino Acid Sequences</figcaption>
+</figure>
+<figure style="width:25%;">
+  <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
+  <figcaption>Extracting Properties of Amino Acids during MLM</figcaption>
+</figure>
 
-- Give an example: the role of charges in amino acids during masked language modeling
 
 ### From Millions to Billions Parameters: Understanding the Impact of Scale
 ![Comparison](/images/Scale.jpg) 
@@ -128,9 +139,10 @@ AlphaFold2 outperforms ESMFold across all datasets. However, the reliance on MSA
 sequences were considered, i.e. mimicking a novel protein sequence. In addition, ESMFold's folding speed makes it easier to
 keep pace with the ever-increasing amount of primary protein sequences available, and is therefore able to create the first metagenomic database.
 
-Overall, the use of an LLM for protein knowledge is a valid alternative to genetic database searches for MSA.
-However, training such a transformer-encoder model via MLM doesn't seem to extract all the evolutionarily relevant information available,
-but given the highly complex protein folding task, such a simple pre-training objective performs better than one would expect.
+Using a LLM for protein knowledge proves to be a viable alternative to genetic database searches in MSA. However, training this transformer-encoder model through MLM appears to miss out on some evolutionarily relevant information.
+Intuitively, this discrepancy makes sense, as MSA explicitly provides valuable insights into co-evolution of amino acid pairs and evolutionarily conserved amino acids in an explicit manner.
+In contrast, ESMFold relies on ESM-2 to convey this knowledge implicitly. While MLM should easily infer information about amino acid charges, a fundamental physical property in all sequences, it falls short in capturing all knowledge inferred by MSA.
+However, considering the simplicity of the pre-training task, ESMFold did perform better than one would expect.
 
 
 ### Final Remark
@@ -138,6 +150,7 @@ Unfortunately, we won't be seeing any further research on ESMFold, as the <a hre
 Meta wants to focus on products that can be commercialised and ESMFold just wasn't it. I think this is
 rather unfortunate scenario, as I suspect that ESMFold2 was never meant to be the end of it. My reasoning stems from the
 simple pre-training objective and the standard BERT architecture. For instance, further research could have been done to create a 
-more sophisticated pre-training objective that incorporates biological properties better than standard MLM.
+more sophisticated pre-training objective or architecture that incorporates biological properties better than standard MLM 
+similar to the novel geometric attention update incorporated in Evoformer by DeepMind.
 
 ------
