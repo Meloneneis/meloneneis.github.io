@@ -27,24 +27,26 @@ tags:
 
 ## Introduction
 ### Protein Folding
-- Protein Definition and Examples
-- Tertiary Shape from primary shape
-- experimental methods for determining proteins (EM-Cryo...)
-- caveats of experimental methods
-- CASP
-- AlphaFold2
+In this blog post, we'll explore the fascinating realm of protein folding-a process that is fundamental to understanding the intricate functions of these molecular marvels. Proteins, the workhorses of life, perform a range of vital tasks, from catalyzing chemical reactions to transporting molecules within cells. Consider helicase, a protein critical for unwinding DNA during replication, as an example of the diverse roles proteins play in cellular processes.
+
+Proteins are made up of chains of amino acids that are intricately folded into complex three-dimensional structures. This folding process is critical because the shape of a protein largely determines its function. Take helicase, for example, with its distinctive ring-shaped structure through which DNA strands pass, facilitating their unwinding.
+
+Remarkably, even with mutations that alter the sequence of amino acids, proteins can retain their function if their overall shape remains unchanged. This underscores the importance of understanding protein folding and drives myriad efforts to experimentally predict protein structures.
+
+Experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy provide insight into protein structures, but with limitations such as cost and time. Despite significant progress, only a fraction of proteins have been experimentally characterized, highlighting the need for initiatives such as the Critical Assessment of Structure Prediction (CASP) to advance research in this area.
+
+In the 14th CASP competition, there one was team that outperformed their competitors by far. This team has created a model for which the grand challenge of cheap and fast protein folding could be considered solved. This team is none other than Google DeepMind with their model AlphaFold2.
 ### AlphaFold2: 60-years old challenge solved
 
-If you're a machine learning enthusiast like me, you've probably heard of AlphaFold2. When DeepMind - the
-team behind AlphaFold2 - first published their work, it made headlines around the world. And rightly so, as it
-provided a solution to a 60-year-old grand challenge in biology, namely protein folding.
+If you're a machine learning enthusiast like me, than you've probably already heard of AlphaFold2. This model marks the first time machine learning has been successfully used for protein folding.
+Here is the thing though, trying to solve the task with a machine learning model has been tried before, but due to the complexity structure folding, it was without much success.
+Scientists have tried to use machine learning to ... but the thing about this methodology is that it unstable due to
 
-So what was all the fuss about, and why is it such a big deal? To understand, we need to take a closer look at the
-challenging task of protein folding.
-### AlphaFold2 to the rescue
-- advantages of AlphaFold2 vs experimental methods
-- write about novel architecture (high-level)
-- write that AlphaFold2 is not perfect and transition to next section
+So how can we make this more stable? DeepMind came up with a plan to do this more stable. Multiple novel things came into the creation of their architecture. Name them.
+Later in this blog post, the architecture will of AlphaFold2 will be shown.
+
+With all that said, is AlphaFold2 the end of research? Is the protein folding considered solved now? I would so no, as AlphaFold2, admittedly a very good creation, is not perfect.
+This can be contributed to the main two things: 1. its speed in prediction and 2. its dependence on multiple sequence alignment (MSA).
 
 ## Limitation of AlphaFold2: The Need for Speed and Independence
 As mentioned above, experimentally predicting the tertiary structure of a protein from its amino acid sequence is an expensive and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself, isn't. This is demonstrated
@@ -127,9 +129,14 @@ achieved if the model learns biological properties of each amino acids. Let me g
 ![Comparison](/images/Comparison.jpg) [describe and interpret]
 
 ## Scientific Contribution: ESM Metagenomic Atlas
-Two advantages can be drawn over AlphaFold2: first, there is the speed-up in protein folding and second, no reliance on evolutionarily related patterns via a genetic database lookup.
-Both these advantages were leveraged to create the first metagenomic atlas, at the scale of hundreds of millions of proteins. To put this number into perspective, only 200.000 protein structures were
-experimentally predicted, and via AlphaFold2
+There are two key advantages over AlphaFold2: (i) there is the acceleration of protein folding and (ii) there is no reliance on evolutionary related patterns via a genetic database search.
+These two advantages have been exploited to create the first metagenomic atlas on the scale of hundreds of millions of proteins. To put this number into perspective, only 200,000 protein structures have been
+were predicted experimentally, and through AlphaFold2 there are currently 200 million protein structures in the AlphaFold database, predicted over a period of 3 years. However,
+via ESMFold, the ESM Metagenomic Atlas contains over 600 million protein structures predicted in just <b>2 weeks</b>!
+
+This is the first time that metagenomic proteins from microbes found in soil, seawater or the ocean have been folded. Understandibly so, because
+such a feast was not possible before as metagenomic proteins were not prioritized for experimental prediction of its structure, i.e. via AlphaFold2
+we could not predict such proteins with high confidence as there are no 
 - explain what metagenomic is and why sequence prediction was not done until this paper (metagenomic proteins not well studied, as this was not first priority when experimentally predicting structures -> no multiple sequence alignment possible)
 - prediction of over 617M sequences
 - mention the different confidence levels on these sequences
