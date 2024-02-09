@@ -107,12 +107,7 @@ Both these models are then the datasets CAMEO and CASP14 on their TM-Score, whic
 
 ## Experiment Results of ESM-2 and ESMFold
 ### Understanding the behind-the-scenes: an intuitive Perspective
-To understand how the contact map can be so well predicted for proteins, we first have to understand what the ESM-2 model replaces, namely MSA.
-In MSA, when there are lots of evolutionarily related sequences available, it ...
-
-So coming back to ESM-2 where we don't do MSA. During MLM the model tries to predict masked amino acids. And to decrease the loss, it has to do well on
-all the amino acid sequences we are giving it during training, i.e. it has to do well on billions of amino acid sequences. Intuitively, this can only be
-achieved if the model learns biological properties of each amino acids. Let me give you an example to clarify what is happening behind the scene.
+To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 3 and 4).
 <div style="display: flex;">
   <figure style="width:35%; margin-right: 10px;">
     <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
@@ -123,6 +118,8 @@ achieved if the model learns biological properties of each amino acids. Let me g
     <figcaption style="text-align: center;">Fig. 4 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
+
+In masked language models (MLMs), directly extracting these properties is more challenging since they do not process inputs in the same integrated manner as AlphaFold2. Nevertheless, for MLMs to excel with millions of protein sequences, they must implicitly learn some of these properties, albeit not as explicitly as AlphaFold2. Consider a scenario where an amino acid, engaged in a long-range contact with another, is masked. This situation implies the amino acids must have opposite charges; if one is positively charged, the masked one must be negatively charged to facilitate contact. This requirement narrows down the selection of possible amino acids, thus reducing prediction complexity (perplexity).
 
 <figure style="width:35%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
