@@ -90,15 +90,20 @@ To analyse how suitable training such a model for protein knowledge, which they 
 
 
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
-For the prediction of tertiary protein structure, the authors used ESM-2 and attached the ESMFold head to it. It consists of multiple folding blocks to further enrich the 
-- structure module same, Folding block is simplified version of Evoformer
-- simplified because seq represention is only one dimensional and in AlphaFold2 it is two dimensional (due to MSA), so for AlphaFold2
-we need axial attention whereas in ESMFold we only need normal self-attention
-- ESM-2 equivalent to MSA in terms of use case
+For the prediction of tertiary protein structure, the authors used ESM-2 and attached the ESMFold head to it. It consists of a stack folding blocks and then a stack of structure modules. Before the protein structure is finalized, it gets recycled through the whole head multiple times.
+
+
+If you are familiar with AlphaFold2 than this kind of architecture should sound familiar, because this is just an adapted version of AlphaFold2! Meta did not change the underlying architecture, but simplification were possible because of the use of ESM-2 instead of MSA. In ESM-2 the output is the enriched amino acid sequence representation, which in theory should incorporate evolutionarily related knowledge extracted during MLM, whereas in AlphaFold2 this step still has to be done! Thus in AlphaFold we pass in the sequence representation we are interested in and evolutionarily related sequence representation found via the genetic database search. Figure 2 shows the differences of both ESMFold and Alphafold2 (the optional template lookup is omitted in the figure for simplicity).
+
 <figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
   <figcaption style="text-align: center;">Fig. 2 <b>(animated and own creation, except Protein Structure from paper)</b></figcaption>
 </figure>
+
+One key advantage of ESMFold is that as the sequence representation is only one dimensional whereas in AlphaFold2 it is two dimensional. This leads to a simplification of the Evoformer as no axial attention mechanism are needed and only simple self-attention can be applied (hence the changed name to Folding Block). 
+
+Both these models are then the datasets CAMEO and CASP14 on their TM-Score, which measures the similarity between the predicted structure and the ground truth.
+
 
 ## Experiment Results of ESM-2 and ESMFold
 ### Understanding the behind-the-scenes: an intuitive Perspective
