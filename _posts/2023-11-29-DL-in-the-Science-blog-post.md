@@ -106,6 +106,14 @@ Both these models are then the datasets CAMEO and CASP14 on their TM-Score, whic
 
 
 ## Experiment Results of ESM-2 and ESMFold
+### Unsupervised Contact Map for LY3W
+The following figure shows the contact map for every amino acid pair in the protein LY3W. The ground truth is depicted in the upper left whereas the contact prediction for the ESM-2 via the weighted attention map is shown in the bottom right half.
+<figure>
+ <img src="/images/contactmap.jpg" alt="Contact Map for LY3W">
+ <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
+</figure>
+
+Immediately noticeable is that both contact maps are quite similar and therefore 
 ### Understanding the behind-the-scenes: an intuitive Perspective
 To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 3 and 4).
 <div style="display: flex;">
