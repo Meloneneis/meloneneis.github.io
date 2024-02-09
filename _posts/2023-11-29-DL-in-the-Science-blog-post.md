@@ -92,7 +92,6 @@ To analyse how suitable training such a model for protein knowledge, which they 
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
 For the prediction of tertiary protein structure, the authors used ESM-2 and attached the ESMFold head to it. It consists of a stack folding blocks and then a stack of structure modules. Before the protein structure is finalized, it gets recycled through the whole head multiple times.
 
-
 If you are familiar with AlphaFold2 than this kind of architecture should sound familiar, because this is just an adapted version of AlphaFold2! Meta did not change the underlying architecture, but simplification were possible because of the use of ESM-2 instead of MSA. In ESM-2 the output is the enriched amino acid sequence representation, which in theory should incorporate evolutionarily related knowledge extracted during MLM, whereas in AlphaFold2 this step still has to be done! Thus in AlphaFold we pass in the sequence representation we are interested in and evolutionarily related sequence representation found via the genetic database search. Figure 2 shows the differences of both ESMFold and Alphafold2 (the optional template lookup is omitted in the figure for simplicity).
 
 <figure>
@@ -113,7 +112,7 @@ The following figure shows the contact map for every amino acid pair in the prot
  <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
 </figure>
 
-Immediately noticeable is that both contact maps are quite similar and therefore 
+Immediately noticeable is that both contact maps are quite similar. This is quite remarkable because the model was not trained on that contact task, hence it is unsupervised! This showcases how the attention patterns correlates to the ground truth contact map!
 ### Understanding the behind-the-scenes: an intuitive Perspective
 To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 3 and 4).
 <div style="display: flex;">
@@ -136,8 +135,19 @@ In masked language models (MLMs), directly extracting these properties is more c
 
 
 ### From Millions to Billions Parameters: Understanding the Impact of Scale
-![Comparison](/images/Scale.jpg) 
-[describe and interpret]
+<figure style="width:35%;">
+  <img src="/images/Scale.jpg" alt="Scale Figure 1">
+  <figcaption style="text-align: center;">Fig. 5 <b>(Source: from paper)</b></figcaption>
+</figure>
+From left to right shows the model starting from 8M parameters to 15B parameters. On the x-axis the smaller model is depicted and on the y-axis the next bigger one. 
+Visible from the plots, there is a trend of improving perplexity for almost all proteins shown by the blueish color. Simultaneously, the unsupervised contact precision improves as well for most of the proteins with scale. This showcases that the perplexity is indeed highly correlated with the contact precision. 
+
+Interestingly, in the third and forth plot there are proteins, albeit just a few of them, were the performance decreases a lot. This was not further investigated by the authors, but I can give you a possible high-level explanation to that.
+When scaling up a model, a model is able to capture more sophisticated knowledge. While this leads to an improvement for most datapoints in the dataset, some datapoints (in our case proteins) could differ a lot from the overall data. The smaller models perform better, because it could be that across all data they share similar basic properties. Maybe you can think of it with the two languages English and German where most of the data is German. In low resolution, i.e. smaller scale, English and German have common properties such as their basic sentence structure Subject + Verb + Object, e.g. in English: "I read books." and in German: "Ich lese Bücher.". This basic sentence structure knowledge for example can be captured by smaller models. Now when we scale up the German model, it could be that the model can now adapt to the incorporation of modal verbs, that is the structure changes to: Subject + (modal verb) + Object + verb. Here the rare english sentences would perform worse, because in english the structure is still the same, e.g. in English: "I must read books." and in German: "I muss Bücher lesen".
+<figure style="width:35%;">
+  <img src="/images/Scale2.jpg" alt="Scale Figure 2">
+  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
+</figure>
 ![Comparison](/images/Scale2.jpg) 
 [describe and interpret]
 
