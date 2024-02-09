@@ -135,13 +135,13 @@ were predicted experimentally, and through AlphaFold2 there are currently 200 mi
 via ESMFold, the ESM Metagenomic Atlas contains over 600 million protein structures predicted in just <b>2 weeks</b>!
 
 This is the first time that metagenomic proteins from microbes found in soil, seawater or the ocean have been folded. Understandibly so, because
-such a feast was not possible before as metagenomic proteins were not prioritized for experimental prediction of its structure, i.e. via AlphaFold2
-we could not predict such proteins with high confidence as there are no 
-- explain what metagenomic is and why sequence prediction was not done until this paper (metagenomic proteins not well studied, as this was not first priority when experimentally predicting structures -> no multiple sequence alignment possible)
-- prediction of over 617M sequences
-- mention the different confidence levels on these sequences
-- write about potential advancements possible made by knowing the structure of metagenomic proteins
-- link of official blogpost for ESM Metagenomic Atlas: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>
+such a feast was not possible before as metagenomic proteins, i.e. from nature, do not have evolutionarily related sequences. This is where ESMFold can shine, 
+as it does not rely on such genetic database search for a good protein structure prediction. As a result, more than X number of proteins folded from the metagnomic
+atlas are of high-confidence! 
+
+This Metagenomic Atlas unveils new protein structure that can potentially be leveraged for all sorts of tasks (name some).
+
+If you want to find more about ESM Metagenomic Atlas, I can recommend you to read through the official blog post of Meta themselves: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>
 
 ## Conclusion
 ### Key Takeaways
