@@ -9,7 +9,7 @@ tags:
 ---
 # Table of Contents
 1. [Introduction](#introduction)
-   1. [Understanding Protein Folding](#protein-folding)
+   1. [Understanding Protein Folding](#underanding-protein-folding)
    2. [AlphaFold2: 60-years old challenge solved](#alphafold2-60-years-old-challenge-solved)
 2. [Limitation of AlphaFold2: The need for Speed and Independence](#limitation-of-alphafold2-the-need-for-speed-and-independence)
 3. [Methodology](#methodology)
@@ -26,7 +26,7 @@ tags:
    2. [Final Remark](#final-remark)
 
 ## Introduction
-### Protein Folding
+### Understanding Protein Folding
 In this blog post, we'll explore the fascinating realm of protein folding-a process that is fundamental to understanding the intricate functions of these molecular marvels. Proteins, the workhorses of life, perform a range of vital tasks, from catalyzing chemical reactions to transporting molecules within cells. Consider helicase, a protein critical for unwinding DNA during replication, as an example of the diverse roles proteins play in cellular processes.
 
 Proteins are made up of chains of amino acids that are intricately folded into complex three-dimensional structures. This folding process is critical because the shape of a protein largely determines its function. Take helicase, for example, with its distinctive ring-shaped structure through which DNA strands pass, facilitating their unwinding.
@@ -65,14 +65,14 @@ give a quick refresher on how and why using a transformer-based architecture is 
 
 ## Methodology
 ### ESM-2: Unlocking the Protein Secrets via Transformers
-Transformers were already introduced in 2017 by the paper "Attention is all you need" by Vaswani et al. To date, they remain the state-of-the-art in all sorts of
-domains such as natural language, computer vision (vision transformers), and also protein folding. The original
-transformers consist of an encoder and a decoder, but it is also possible to use them alone with great success. For protein folding
-we will only look at the encoder part of the transformers.
+Transformers, the new SOTA architecture introduced in the paper "Attention is all you need" by Vaswani et al., have revolutionized various domains, including natural language processing, computer vision with vision transformers, and the field of protein folding. At the heart of transformers' success lie two main components: self-attention and parallelization. 
 
-Self-attention is the key ingredient for the success of multiple ...
+Self-attention, in essence, allows the model to weigh the importance of different parts of the input sequence in relation to each other, effectively understanding the context within the sequence as a whole. This mechanism ensures that the model can focus on the most relevant parts of the input to make predictions, making it particularly adept at capturing relationships between tokens.
 
-Masked Language Modeling is the pre-training task...
+When we discuss transformers in the context of protein folding, we specifically refer to the encoder part of the architecture. This design choice means that we are primarily focused on enriching an input sequence with contextual information, rather than generating new sequences. The encoder achieves this through a training objective known as masked language modeling (MLM).
+
+MLM is a training strategy where random parts of the input sequence are masked from the model during training, and then let the model predict these hidden parts based only on the context provided by the remaining sequence. Figure 1 shows such a training step on a single amino acid chain.
+
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
   <figcaption style="text-align: center;">
@@ -80,18 +80,27 @@ Masked Language Modeling is the pre-training task...
   </figcaption>
 </figure>
 
-## Experiment Results of ESM-2 and ESMFold
+Needless to say, they weren't just training on a single amino acid sequence, but on ~65 million unique sequences, and thereby parallelization is crucial for training such a model. Intuitively, for the model to perform well on MLM on millions of sequences, it needs to learn biological amino acid properties relevant to the folding mechanism.
+
+To analyse how suitable training such a model for protein knowledge, which they call ESM-2, is two main experiments have been conducted. 
+
+[First](#), the authors mapped the attention scores for every single amino acid pair over the weighted attention map and compared this with the experimentally determined ground truth on the 3LYW protein.
+
+[Secondly](#from-millions-to-billions-parameters-understanding-the-impact-of-scale), the authors want to understand what happens when we scale up the ESM-2 and if this is a valid approach to improve the quality of said knowledge. Specifically, the smaller ESM-2 is compared to the next largest ESM-2 on a set of validation proteins, and there they check the change in perplexity and precision of long-range contact. Perplexity is the number of amino acids the model chooses for the masked amino acid, and precision of long range contact is the number of contact predictions the model got right out of all contact predictions made.
+
+
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
-- mention that the head is adopted version of AlphaFold2 
+For the prediction of tertiary protein structure, the authors used ESM-2 and attached the ESMFold head to it. It consists of multiple folding blocks to further enrich the 
 - structure module same, Folding block is simplified version of Evoformer
 - simplified because seq represention is only one dimensional and in AlphaFold2 it is two dimensional (due to MSA), so for AlphaFold2
 we need axial attention whereas in ESMFold we only need normal self-attention
 - ESM-2 equivalent to MSA in terms of use case
-<figure style="text-align: center;">
+<figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
-  <figcaption>Fig. 2 <b>(animated and own creation, but Protein Structure from paper)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 2 <b>(animated and own creation, except Protein Structure from paper)</b></figcaption>
 </figure>
 
+## Experiment Results of ESM-2 and ESMFold
 ### Understanding the behind-the-scenes: an intuitive Perspective
 To understand how the contact map can be so well predicted for proteins, we first have to understand what the ESM-2 model replaces, namely MSA.
 In MSA, when there are lots of evolutionarily related sequences available, it ...
