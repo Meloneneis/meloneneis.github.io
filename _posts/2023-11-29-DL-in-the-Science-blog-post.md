@@ -67,7 +67,7 @@ Needless to say, they weren't just training on a single amino acid sequence, but
 
 To analyse how suitable training such a model for protein knowledge, which they call ESM-2, is two main experiments have been conducted. 
 
-[First](#), the authors mapped the attention scores for every single amino acid pair over the weighted attention map and compared this with the experimentally determined ground truth on the 3LYW protein.
+[First](#unsupervised-contact-map-for-ly3w), the authors mapped the attention scores for every single amino acid pair over the weighted attention map and compared this with the experimentally determined ground truth on the 3LYW protein.
 
 [Secondly](#from-millions-to-billions-parameters-understanding-the-impact-of-scale), the authors want to understand what happens when we scale up the ESM-2 and if this is a valid approach to improve the quality of said knowledge. Specifically, the smaller ESM-2 is compared to the next largest ESM-2 on a set of validation proteins, and there they check the change in perplexity and precision of long-range contact. Perplexity is the number of amino acids the model chooses for the masked amino acid, and precision of long range contact is the number of contact predictions the model got right out of all contact predictions made.
 
