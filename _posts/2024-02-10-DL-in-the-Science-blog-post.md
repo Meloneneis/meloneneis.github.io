@@ -1,14 +1,14 @@
 ---
 title: 'Evolutionary-scale prediction of atomic level protein structure with a language model'
-date: 2023-11-20
-permalink: /posts/2023/11/DL-in-the-Science/
+date: 2024-02-10
+permalink: /posts/2024/02/DL-in-the-Science/
 tags:
   - Deep Learning
   - Protein Structure
   - Bioinformatics
 ---
 
-# Table of Contents
+## Table of Contents
 1. [Introduction](#introduction)
    1. [Understanding Protein Folding](#understanding-protein-folding)
    2. [AlphaFold2: 60-years old challenge solved](#alphafold2-60-years-old-challenge-solved)
