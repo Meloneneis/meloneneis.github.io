@@ -60,9 +60,7 @@ MLM is a training strategy where random parts of the input sequence are masked f
 
 <figure>
   <img src="/images/mlm.gif" alt="The beautiful MDN logo.">
-  <figcaption style="text-align: center;">
-    Fig. 1 <b>(animated and own creation)</b>
-  </figcaption>
+  <figcaption style="text-align: center;">Fig. 1 <b>(animated and own creation)</b></figcaption>
 </figure>
 
 Needless to say, they weren't just training on a single amino acid sequence, but on ~65 million unique sequences, and thereby parallelization is crucial for training such a model. Intuitively, for the model to perform well on MLM on millions of sequences, it needs to learn biological amino acid properties relevant to the folding mechanism.
@@ -92,7 +90,7 @@ Both these models are then compared on datasets CAMEO and CASP14 on their TM-Sco
 ## Experiment Results of ESM-2 and ESMFold
 ### Unsupervised Contact Map for LY3W
 The following figure shows the contact map for every amino acid pair in the protein LY3W. The ground truth is depicted in the upper left whereas the contact prediction for the ESM-2 via the weighted attention map is shown in the bottom right half.
-<figure>
+<figure style="width:35%; margin-right: 10px;">
  <img src="/images/contactmap.jpg" alt="Contact Map for LY3W">
  <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
 </figure>
@@ -103,11 +101,11 @@ To grasp why attention scores align closely with the contact map, revisiting the
 <div style="display: flex;">
   <figure style="width:35%; margin-right: 10px;">
     <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
-    <figcaption style="text-align: center;">Fig. 3 <b>(animated and own creation)</b></figcaption>
+    <figcaption style="text-align: center;">Fig. 4<b>(animated and own creation)</b></figcaption>
   </figure>
-  <figure style="width:35%; text-align: center">
+  <figure style="width:30%; text-align: center">
     <img src="/images/coevolution2.gif" alt="AlphaFold2 Architecture">
-    <figcaption style="text-align: center;">Fig. 4 <b>(animated and own creation)</b></figcaption>
+    <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
   </figure>
 </div>
 
@@ -115,14 +113,14 @@ In masked language models (MLMs), directly extracting these properties is more c
 
 <figure style="width:35%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
-  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 6 <b>(own creation)</b></figcaption>
 </figure>
 
 
 ### From Millions to Billions Parameters: Understanding the Impact of Scale
-<figure style="width:35%;">
+<figure>
   <img src="/images/Scale.jpg" alt="Scale Figure 1">
-  <figcaption style="text-align: center;">Fig. 5 <b>(Source: from paper)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 7 <b>(Source: from paper)</b></figcaption>
 </figure>
 From left to right shows the model starting from 8M parameters to 15B parameters. On the x-axis the smaller model is depicted and on the y-axis the next bigger one. 
 Visible from the plots, there is a trend of improving perplexity for almost all proteins shown by the blueish color. Simultaneously, the unsupervised contact precision improves as well for most of the proteins with scale. This showcases that the perplexity is indeed highly correlated with the contact precision. 
@@ -134,9 +132,9 @@ When a model is scaled up, it learns more complex information, improving perform
 This foundational structure is easily captured by smaller models. However, when sentences become more complex, such as those including a modal verb, the structure in German shifts to Subject + (modal verb) + Object + Verb, as in "Ich muss Bücher lesen." However, in English, the sentence structure doesn't change, even with the addition of a modal verb, as seen in "I must read books." This means that smaller models, which focus on basic structures, continue to perform well with these slightly more complex English sentences. If a model is trained mainly on German data and then scaled up, it learns to adjust for the modal verb placement, which negatively affect the performance on the rare English sentences with modal verbs. The scaled-up model is now better at handling complex German sentence structures, i.e. for sentences with modal verbs change structure from: "Subject + Verb + Object" to "Subject + (Modal Verb) + Object + Verb". However, applying this knowledge to the rare English sentences with modal verbs would in turn lead to a performance loss as the structure still is the same even with modal verbs for English.
 
 Coming back to the proteins that perform worse, we can't say for sure why it happens, but what should be clear is that these proteins should differ a lot from the general data and I think it is important to analyse such cases further to make sure that the model always gives a good prediction no matter which protein we want to infer.
-<figure style="width:35%;">
+<figure>
   <img src="/images/Scale2.jpg" alt="Scale Figure 2">
-  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 8 <b>(animated and own creation)</b></figcaption>
 </figure>
 
 The figure illustrates the effect of scaling the ESM-2 model on the prediction accuracy for two different proteins, utilizing the ESMFold extension. Alongside perplexity, two additional measures are introduced: RMSD, which represents the root-mean-square deviation of atomic positions, indicating that a lower value suggests better alignment of predicted atom positions with the actual structure; and pLDDT, a confidence score where a higher percentage indicates greater model certainty in the predicted alignment with the true protein structure.
@@ -145,9 +143,9 @@ From the visual representation of the predicted proteins, it is apparent that as
 
 
 ### Comparison to SOTA Models: AlphaFold-2 and RosettaFold
-<figure style="width:35%;">
+<figure>
   <img src="/images/Comparison.jpg" alt="Comparison">
-  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
+  <figcaption style="text-align: center;">Fig. 9 <b>(animated and own creation)</b></figcaption>
 </figure>
 As can be seen from the above figure in the left bar chart, ESMFold yields competitive results on CAMEO but fails to do so on CASP14. This discrepancy could be explained by the competitive nature of CASP14, meaning that the amino acid sequences we have to infer the structure from are highly complex.
 
