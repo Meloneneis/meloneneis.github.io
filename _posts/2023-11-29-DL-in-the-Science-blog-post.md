@@ -82,14 +82,14 @@ For those acquainted with AlphaFold2's design, the architecture of ESMFold may s
   <figcaption style="text-align: center;">Fig. 2 <b>(animated and own creation, except Protein Structure from paper)</b></figcaption>
 </figure>
 
-Figure two illustrates that ESMFold takes two inputs: a pair representation and a sequence representation, in contrast to the multiple sequence alignment (MSA) representation used in AlphaFold's Evoformer. The folding block in ESMFold is a simplified version of the Evoformer, eliminating the need for axial attention thanks to the one-dimensional nature of the sequence representation. The pair representation acts as a detailed blueprint, laying out the potential interactions between amino acid pairs. In the folding block, the pair representation is regularly updated to reflect the latest changes in the sequence data. This process involves a back-and-forth adjustment where updates to the sequence and its geometry are made together, keeping both the sequence information and the spatial relationships between amino acids in sync. After this process, the refined sequence and pair representation is passed to the structure module, which translates the abstract representation of the protein's sequence into concrete three-dimensional coordinates, effectively mapping the protein's structure in space.
+Figure 2 illustrates that ESMFold takes two inputs: a pair representation and a sequence representation, in contrast to the multiple sequence alignment (MSA) representation used in AlphaFold's Evoformer. The folding block in ESMFold is a simplified version of the Evoformer, eliminating the need for axial attention thanks to the one-dimensional nature of the sequence representation. The pair representation acts as a detailed blueprint, laying out the potential interactions between amino acid pairs. In the folding block, the pair representation is regularly updated to reflect the latest changes in the sequence data. This process involves a back-and-forth adjustment where updates to the sequence and its geometry are made together, keeping both the sequence information and the spatial relationships between amino acids in sync. After this process, the refined sequence and pair representation is passed to the structure module, which translates the abstract representation of the protein's sequence into concrete three-dimensional coordinates, effectively mapping the protein's structure in space.
 
 Both these models are then compared on datasets CAMEO and CASP14 on their TM-Score, which measures the similarity between the predicted structure and the ground truth.
 
 
 ## Experiment Results of ESM-2 and ESMFold
 ### Unsupervised Contact Map for LY3W
-The following figure shows the contact map for every amino acid pair in the protein LY3W. The ground truth is depicted in the upper left whereas the contact prediction for the ESM-2 via the weighted attention map is shown in the bottom right half.
+Figure 3 shows the contact map for every amino acid pair in the protein LY3W. The ground truth is depicted in the upper left whereas the contact prediction for the ESM-2 via the weighted attention map is shown in the bottom right half.
 <figure style="width:50%; margin-right: 10px;">
  <img src="/images/contactmap.jpg" alt="Contact Map for LY3W">
  <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
@@ -97,7 +97,7 @@ The following figure shows the contact map for every amino acid pair in the prot
 
 Immediately noticeable is that both contact maps are quite similar. This is quite remarkable because the model was not trained on that contact task, hence it is unsupervised! This showcases how the attention patterns in a transformer architecture correlates to the ground truth contact map!
 ### Understanding the behind-the-scenes: an intuitive Perspective
-To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 3 and 4).
+To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 4 and 5).
 <div style="display: flex;">
   <figure style="width:35%; margin-right: 10px;">
     <img src="/images/coevolution1.gif" alt="AlphaFold2 Architecture">
@@ -109,7 +109,7 @@ To grasp why attention scores align closely with the contact map, revisiting the
   </figure>
 </div>
 
-In masked language models (MLMs), directly extracting these properties is more challenging since they do not process inputs in the same integrated manner as AlphaFold2. Nevertheless, for MLMs to excel with millions of protein sequences, they must implicitly learn some of these properties, albeit not as explicitly as AlphaFold2. Consider a scenario where an amino acid, engaged in a long-range contact with another, is masked. This situation implies the amino acids must have opposite charges; if one is positively charged, the masked one must be negatively charged to facilitate contact. This requirement narrows down the selection of possible amino acids, thus reducing the set of amino acid to choose from, i.e. lower perplexity.
+In masked language models (MLMs), directly extracting these properties is more challenging since they do not process inputs in the same integrated manner as AlphaFold2. Nevertheless, for MLMs to excel with millions of protein sequences, they must implicitly learn some of these properties, albeit not as explicitly as AlphaFold2. Consider a scenario where an amino acid, engaged in a long-range contact with another, is masked. This situation implies the amino acids must have opposite charges; if one is positively charged, the masked one must be negatively charged to facilitate contact. This requirement narrows down the selection of possible amino acids, thus reducing the set of amino acid to choose from, i.e. lower perplexity (see figure 6)
 
 <figure style="width:35%;">
   <img src="/images/mlm_intuition.png" alt="AlphaFold2 Architecture">
@@ -122,7 +122,7 @@ In masked language models (MLMs), directly extracting these properties is more c
   <img src="/images/Scale.jpg" alt="Scale Figure 1">
   <figcaption style="text-align: center;">Fig. 7 <b>(Source: from paper)</b></figcaption>
 </figure>
-From left to right shows the model starting from 8M parameters to 15B parameters. On the x-axis the smaller model is depicted and on the y-axis the next bigger one. 
+In figure 7 from left to right shows the model starting from 8M parameters to 15B parameters. On the x-axis the smaller model is depicted and on the y-axis the next bigger one. 
 Visible from the plots, there is a trend of improving perplexity for almost all proteins shown by the blueish color. Simultaneously, the unsupervised contact precision improves as well for most of the proteins with scale. This showcases that the perplexity is indeed highly correlated with the contact precision. 
 
 Interestingly, in the third and forth plot there are proteins, albeit just a few of them, were the performance decreases a lot. This was not further investigated by the authors, but I can give you a possible high-level explanation to that. 
@@ -137,7 +137,7 @@ Coming back to the proteins that perform worse, we can't say for sure why it hap
   <figcaption style="text-align: center;">Fig. 8 <b>(animated and own creation)</b></figcaption>
 </figure>
 
-The figure illustrates the effect of scaling the ESM-2 model on the prediction accuracy for two different proteins, utilizing the ESMFold extension. Alongside perplexity, two additional measures are introduced: RMSD, which represents the root-mean-square deviation of atomic positions, indicating that a lower value suggests better alignment of predicted atom positions with the actual structure; and pLDDT, a confidence score where a higher percentage indicates greater model certainty in the predicted alignment with the true protein structure.
+The figure 8 illustrates the effect of scaling the ESM-2 model on the prediction accuracy for two different proteins, utilizing the ESMFold extension. Alongside perplexity, two additional measures are introduced: RMSD, which represents the root-mean-square deviation of atomic positions, indicating that a lower value suggests better alignment of predicted atom positions with the actual structure; and pLDDT, a confidence score where a higher percentage indicates greater model certainty in the predicted alignment with the true protein structure.
 
 From the visual representation of the predicted proteins, it is apparent that as ESM-2 is scaled up, RMSD decreases while the pLDDT confidence score increases. This transition is depicted by the change in color from pinkish color (denoting lower confidence) to bluish color (denoting higher confidence). The ground truth structure of the protein is shown in gray, and it is evident that as the model scales, the predicted regions increasingly converge with the gray areas, indicating greater accuracy in the model’s predictions. Simultaneously, the perplexity decreases with scale as well confirming again that MLM perplexity is a good measure for the overall performance of structure prediction.
 
@@ -147,9 +147,9 @@ From the visual representation of the predicted proteins, it is apparent that as
   <img src="/images/Comparison.jpg" alt="Comparison">
   <figcaption style="text-align: center;">Fig. 9 <b>(animated and own creation)</b></figcaption>
 </figure>
-As can be seen from the above figure in the left bar chart, ESMFold yields competitive results on CAMEO but fails to do so on CASP14. This discrepancy could be explained by the competitive nature of CASP14, meaning that the amino acid sequences we have to infer the structure from are highly complex.
+As can be seen from the above figure 9 in the left bar chart, ESMFold yields competitive results on CAMEO but fails to do so on CASP14. This discrepancy could be explained by the competitive nature of CASP14, meaning that the amino acid sequences we have to infer the structure from are highly complex.
 
-The authors also conducted an ablation study where where no evolutionarily related sequences (MSA) were used in the RosettaFold and AlphaFold2 models. Here, ESMFold significantly outperformed the state-of-the-art (SOTA) models. However, it's important to note that this comparison may not be entirely fair, as the SOTA models aren't specifically trained to perform without MSA input.
+The authors also conducted an ablation study where no evolutionarily related sequences (MSA) were used in the RosettaFold and AlphaFold2 models. Here, ESMFold significantly outperformed the state-of-the-art (SOTA) models. However, it's important to note that this comparison may not be entirely fair, as the SOTA models aren't specifically trained to perform without MSA input.
 
 On the right, the scatter plots illustrate that ESMFold maintains consistent performance on proteins with low perplexity scores across both datasets, matching the accuracy of predictions regardless of the dataset complexity.
 
