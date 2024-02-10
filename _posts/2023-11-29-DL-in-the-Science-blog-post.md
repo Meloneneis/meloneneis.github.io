@@ -10,14 +10,14 @@ tags:
 
 # Table of Contents
 1. [Introduction](#introduction)
-   1. [Understanding Protein Folding](#underanding-protein-folding)
+   1. [Understanding Protein Folding](#understanding-protein-folding)
    2. [AlphaFold2: 60-years old challenge solved](#alphafold2-60-years-old-challenge-solved)
 2. [Limitation of AlphaFold2: The need for Speed and Independence](#limitation-of-alphafold2-the-need-for-speed-and-independence)
 3. [Methodology](#methodology)
    1. [ESM-2: Unlocking the Protein Secrets via Transformers](#esm-2-unlocking-the-protein-secrets-via-transformers)
    2. [ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction](#esmfold-attaching-the-head-to-esm-2-for-protein-structure-prediction)
-4. [Experiment Results of ESM-2 and ESMFold](#experiment-results-esm-2-and-esmfold)
-   1. [ESM-2: Contact Map for Protein 3LYW](#contact-map-for-protein-3lyw)
+4. [Experiment Results of ESM-2 and ESMFold](#experiment-results-of-esm-2-and-esmfold)
+   1. [ESM-2: Unsupervised Contact Map for Protein 3LYW](#unsupervised-contact-map-for-ly3w)
    2. [ESM-2: Understanding the behind-the-scenes: An intuitive perspective](#understanding-the-behind-the-scenes-an-intuitive-perspective)
    3. [ESM-2: From Millions to Billions Parameters: Understanding the Impact of Scale](#from-millions-to-billions-parameters-understanding-the-impact-of-scale)
    4. [ESMFold: Comparison to SOTA Models: AlphaFold-2 and RosettaFold](#comparison-to-sota-models-alphafold-2-and-rosettafold)
@@ -163,7 +163,7 @@ The Metagenomic Atlas opens up new frontiers in scientific research, uncovering 
 
 All the predicted structures from this monumental effort are freely accessible in the ESM Metagenomic Atlas, available through a user-friendly web interface, API, and bulk download options. This open science resource facilitates both broad and detailed analyses, enabling researchers worldwide to explore the full breadth of the hundreds of millions of predicted structures.
 
-If you want to find more about ESM Metagenomic Atlas, I can recommend you to read through the official blog post of Meta themselves: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>.
+If you want to find more about ESM Metagenomic Atlas, I can recommend you to read through the official blog post from Meta themselves: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>.
 
 ## Conclusion
 ### Key Takeaways
