@@ -37,12 +37,9 @@ Scientists use methods like X-ray crystallography and nuclear magnetic resonance
 
 In the 14th CASP competition, there was a standout team that performed much better than the others. This team developed a model that could be seen as solving the big challenge of making protein folding quicker and more affordable. That team is Google DeepMind, and their model, AlphaFold2, is making waves in the field.
 ### AlphaFold2: 60-years old challenge solved
-If you're a machine learning enthusiast like me, then you've probably already heard of AlphaFold2. This model marks the first time machine learning has been successfully used for protein folding.
-Here is the thing though, trying to solve the task with a machine learning model has been tried before, but due to the complexity structure folding, it was without much success.
-Scientists have tried to use machine learning to ... but the thing about this methodology is that it unstable due to
+For those with a keen interest in machine learning, AlphaFold2 has likely been on your radar. This groundbreaking model stands out as the first successful application of machine learning to the complex challenge of protein folding. Previous attempts to tackle protein folding with machine learning models fell short, largely due to the intricate nature of protein structures. Efforts to use machine learning for this task were often met with instability and lackluster results.
 
-So how can we make this more stable? DeepMind came up with a plan to do this more stable. Multiple novel things came into the creation of their architecture. Name them.
-Later in this blog post, the architecture will of AlphaFold2 will be shown.
+But how did DeepMind overcome these obstacles to stability in protein folding predictions? They developed a robust strategy, integrating several innovative elements into their model's architecture, which will be explored in more detail later in this blog post.
 
 With all that said, is AlphaFold2 the end of research? Is the protein folding considered solved now? I would so no, as AlphaFold2, admittedly a very good creation, is not perfect.
 This can be contributed to the main two things: 1. its speed in prediction and 2. its dependence on multiple sequence alignment (MSA).
@@ -78,18 +75,18 @@ To analyse how suitable training such a model for protein knowledge, which they 
 
 
 ### ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction
-For the prediction of tertiary protein structure, the authors used ESM-2 and attached the ESMFold head to it. It consists of a stack folding blocks and then a stack of structure modules. Before the protein structure is finalized, it gets recycled through the whole head multiple times.
+In their approach to predicting the tertiary structure of proteins, the researchers employed ESM-2, augmenting it with a component known as the ESMFold head. This head is composed of a sequence of folding blocks followed by a series of structure modules. To refine the protein structure, the model iteratively processes it through the ESMFold head multiple times, a technique known as recycling, which helps to progressively improve the accuracy of the structure prediction.
 
-If you are familiar with AlphaFold2 than this kind of architecture should sound familiar, because this is just an adapted version of AlphaFold2! Meta did not change the underlying architecture, but simplification were possible because of the use of ESM-2 instead of MSA. In ESM-2 the output is the enriched amino acid sequence representation, which in theory should incorporate evolutionarily related knowledge extracted during MLM, whereas in AlphaFold2 this step still has to be done! Thus in AlphaFold we pass in the sequence representation we are interested in and evolutionarily related sequence representation found via the genetic database search. Figure 2 shows the differences of both ESMFold and Alphafold2 (the optional template lookup is omitted in the figure for simplicity).
+For those acquainted with AlphaFold2's design, the architecture of ESMFold may seem quite familiar, as it is a modified version of AlphaFold2's setup. However, Meta's implementation has been simplified by leveraging ESM-2's capabilities, thereby bypassing the need for multiple sequence alignments (MSA). ESM-2 outputs an amino acid sequence representation that is already enhanced, theoretically embedding evolutionary relationships learned during MLM. In contrast, AlphaFold2 necessitates an additional step to incorporate evolutionarily related sequence information obtained through genetic database searches. Consequently, while AlphaFold2 inputs both the target sequence representation and its evolutionarily related counterparts, ESMFold requires only the former. The distinctions between ESMFold and AlphaFold2's methodologies are depicted in Figure 2, which excludes the optional template lookup for clarity.
 
 <figure>
   <img src="/images/Architecture.gif" alt="The beautiful MDN logo.">
   <figcaption style="text-align: center;">Fig. 2 <b>(animated and own creation, except Protein Structure from paper)</b></figcaption>
 </figure>
 
-One key advantage of ESMFold is that as the sequence representation is only one dimensional whereas in AlphaFold2 it is two dimensional. This leads to a simplification of the Evoformer as no axial attention mechanism are needed and only simple self-attention can be applied (hence the changed name to Folding Block). 
+Figure two illustrates that ESMFold takes two inputs: a pair representation and a sequence representation, in contrast to the multiple sequence alignment (MSA) representation used in AlphaFold's Evoformer. The folding block in ESMFold is a simplified version of the Evoformer, eliminating the need for axial attention thanks to the one-dimensional nature of the sequence representation. The pair representation acts as a detailed blueprint, laying out the potential interactions between amino acid pairs. In the folding block, the pair representation is regularly updated to reflect the latest changes in the sequence data. This process involves a back-and-forth adjustment where updates to the sequence and its geometry are made together, keeping both the sequence information and the spatial relationships between amino acids in sync. After this process, the refined sequence and pair representation is passed to the structure module, which translates the abstract representation of the protein's sequence into concrete three-dimensional coordinates, effectively mapping the protein's structure in space.
 
-Both these models are then the datasets CAMEO and CASP14 on their TM-Score, which measures the similarity between the predicted structure and the ground truth.
+Both these models are then compared on datasets CAMEO and CASP14 on their TM-Score, which measures the similarity between the predicted structure and the ground truth.
 
 
 ## Experiment Results of ESM-2 and ESMFold
