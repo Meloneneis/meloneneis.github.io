@@ -27,18 +27,17 @@ tags:
 
 ## Introduction
 ### Understanding Protein Folding
-In this blog post, we'll explore the fascinating realm of protein folding-a process that is fundamental to understanding the intricate functions of these molecular marvels. Proteins, the workhorses of life, perform a range of vital tasks, from catalyzing chemical reactions to transporting molecules within cells. Consider helicase, a protein critical for unwinding DNA during replication, as an example of the diverse roles proteins play in cellular processes.
+In this blog post, we'll explore the concept of protein folding, which is essential for understanding how these molecules function. Proteins are like the workhorses of life, carrying out vital tasks such as speeding up chemical reactions and transporting molecules within cells. For instance, there's a protein called helicase that's crucial for unwinding DNA during replication. It's fascinating to see how proteins have diverse roles in cellular processes.
 
-Proteins are made up of chains of amino acids that are intricately folded into complex three-dimensional structures. This folding process is critical because the shape of a protein largely determines its function. Take helicase, for example, with its distinctive ring-shaped structure through which DNA strands pass, facilitating their unwinding.
+Proteins are like chains made of building blocks called amino acids. They fold up in complicated ways to form specific shapes in three dimensions. This folding is super important because the shape of a protein decides what it can do. For instance, there's a protein called helicase that has a unique ring shape. It helps DNA strands unwind by letting them pass through the ring.
 
-Remarkably, even with mutations that alter the sequence of amino acids, proteins can retain their function if their overall shape remains unchanged. This underscores the importance of understanding protein folding and drives myriad efforts to experimentally predict protein structures.
+Surprisingly, even if the order of amino acids changes due to mutations, proteins can still work if their overall shape stays the same. This shows why it's important to understand how proteins fold, which is why scientists are trying lots of ways to predict protein shapes in experiments.
 
-Experimental methods such as X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy provide insight into protein structures, but with limitations such as cost and time. Despite significant progress, only a fraction of proteins have been experimentally characterized, highlighting the need for initiatives such as the Critical Assessment of Structure Prediction (CASP) to advance research in this area.
+Scientists use methods like X-ray crystallography and nuclear magnetic resonance (NMR) spectroscopy to learn about protein structures, but these methods can be expensive and time-consuming. Even though we've made a lot of progress, we still haven't studied all proteins this way. That's why projects like the Critical Assessment of Structure Prediction (CASP) are important - they help us keep moving forward in this field.
 
-In the 14th CASP competition, there one was team that outperformed their competitors by far. This team has created a model for which the grand challenge of cheap and fast protein folding could be considered solved. This team is none other than Google DeepMind with their model AlphaFold2.
-
+In the 14th CASP competition, there was a standout team that performed much better than the others. This team developed a model that could be seen as solving the big challenge of making protein folding quicker and more affordable. That team is Google DeepMind, and their model, AlphaFold2, is making waves in the field.
 ### AlphaFold2: 60-years old challenge solved
-If you're a machine learning enthusiast like me, than you've probably already heard of AlphaFold2. This model marks the first time machine learning has been successfully used for protein folding.
+If you're a machine learning enthusiast like me, then you've probably already heard of AlphaFold2. This model marks the first time machine learning has been successfully used for protein folding.
 Here is the thing though, trying to solve the task with a machine learning model has been tried before, but due to the complexity structure folding, it was without much success.
 Scientists have tried to use machine learning to ... but the thing about this methodology is that it unstable due to
 
@@ -49,20 +48,9 @@ With all that said, is AlphaFold2 the end of research? Is the protein folding co
 This can be contributed to the main two things: 1. its speed in prediction and 2. its dependence on multiple sequence alignment (MSA).
 
 ## Limitation of AlphaFold2: The Need for Speed and Independence
-As mentioned above, experimentally predicting the tertiary structure of a protein from its amino acid sequence is an expensive and time-consuming task, but determining the primary structure, i.e. the amino acid sequence itself, isn't. This is demonstrated
-by the ever-growing protein sequence databases. In other words, AlphaFold2's inference speed can't keep up with the
-growing size of the available primary amino acid sequences. This is mainly due to the time-consuming search for similar proteins during MSA. 
-In addition, AlphaFold2 won't be able to handle novel protein sequences as well due to the lack of evolutionarily related sequences in the database.
+As mentioned earlier, predicting the three-dimensional structure of a protein from its sequence of amino acids using experiments is both costly and time-intensive. However, determining the primary structure, which is the sequence of amino acids itself, is comparatively easier and faster. This is evident from the continuously expanding databases of protein sequences. In simpler terms, AlphaFold2's speed in making predictions can't match the rapid growth of available primary amino acid sequences. This is largely because searching for similar proteins during Multiple Sequence Alignment (MSA) takes up a lot of time. Moreover, AlphaFold2 may struggle with new protein sequences due to the absence of closely related sequences in the database.
 
-What if we could simply eliminate the need for multiple sequence alignment altogether, thus eliminating the rather time-consuming
-search and dependence on evolutionarily related sequences? What if there was a way to integrate such information in a more
-end-to-end fashion? If you are a machine learning expert, or even better an NLP expert, you might know where this is going.
-The answer to these questions is another language model that encapsulates all knowledge about amino acids.
-You can think of it as a model that learns the language of proteins. Sounds intuitive, doesn't it? ESMFold - the
-work by Meta - has done just that, and to be more precise, it has used the state-of-the-art Transformer Encoder
-architecture to do so. Since there is already a lot of good content explaining how this architecture works, I will just
-give a quick refresher on how and why using a transformer-based architecture is such a good idea here.
-
+What if we could skip the need for multiple sequence alignment altogether, cutting out the time-consuming search and reliance on evolutionarily related sequences? What if we could integrate such information more seamlessly? If you're familiar with machine learning or, even better, natural language processing (NLP), you might see where this is headed. The solution lies in another language model that comprehensively understands amino acids - essentially, a model fluent in the language of proteins. It's quite intuitive, isn't it? ESMFold, developed by Meta, has achieved exactly that, leveraging the cutting-edge Transformer Encoder architecture. Since there's already ample information available on how this architecture functions, I'll briefly touch on why using a transformer-based approach is such a smart move in this context.
 ## Methodology
 ### ESM-2: Unlocking the Protein Secrets via Transformers
 Transformers, the new SOTA architecture introduced in the paper "Attention is all you need" by Vaswani et al., have revolutionized various domains, including natural language processing, computer vision with vision transformers, and the field of protein folding. At the heart of transformers' success lie two main components: self-attention and parallelization. 
@@ -154,28 +142,33 @@ Coming back to the proteins that perform worse, we can't say for sure why it hap
   <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
 </figure>
 
+The figure illustrates the effect of scaling the ESM-2 model on the prediction accuracy for two different proteins, utilizing the ESMFold extension. Alongside perplexity, two additional measures are introduced: RMSD, which represents the root-mean-square deviation of atomic positions, indicating that a lower value suggests better alignment of predicted atom positions with the actual structure; and pLDDT, a confidence score where a higher percentage indicates greater model certainty in the predicted alignment with the true protein structure.
+
+From the visual representation of the predicted proteins, it is apparent that as ESM-2 is scaled up, RMSD decreases while the pLDDT confidence score increases. This transition is depicted by the change in color from pinkish color (denoting lower confidence) to bluish color (signifying higher confidence). The ground truth structure of the protein is shown in gray, and it is evident that as the model scales, the predicted regions increasingly converge with the gray areas, indicating greater accuracy in the model’s predictions. Simultaneously, the perplexity decreases with scale as well confirming again that MLM perplexity is a good measure for the overall performance of structure prediction.
 
 
 ### Comparison to SOTA Models: AlphaFold-2 and RosettaFold
-- Explain metric used: TM-Score
-- shortly describe the datasets used: CASP-14 and CAMEO
-- maybe mention some limitation due to worse performance especially in CASP-14 (Casp is competition, usually in competitions things are made difficult, i.e. complex protein structure used)
-![Comparison](/images/Comparison.jpg) [describe and interpret]
+<figure style="width:35%;">
+  <img src="/images/Comparison.jpg" alt="Comparison">
+  <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
+</figure>
+As can be seen from the above figure in the left bar chart, ESMFold yields competitive results on CAMEO but fails to do so on CASP14. This discrepancy could be explained by the competitive nature of CASP14, meaning that the amino acid sequences we have to infer the structure from are highly complex.
+
+The authors also conducted an ablation study where where no evolutionarily related sequences (MSA) were used in the RosettaFold and AlphaFold2 models. Here, ESMFold significantly outperformed the state-of-the-art (SOTA) models. However, it's important to note that this comparison may not be entirely fair, as the SOTA models aren't specifically trained to perform without MSA input.
+
+On the right, the scatter plots illustrate that ESMFold maintains consistent performance on proteins with low perplexity scores across both datasets, matching the accuracy of predictions regardless of the dataset complexity.
+
 
 ## Scientific Contribution: ESM Metagenomic Atlas
-There are two key advantages over AlphaFold2: (i) there is the acceleration of protein folding and (ii) there is no reliance on evolutionary related patterns via a genetic database search.
-These two advantages have been exploited to create the first metagenomic atlas on the scale of hundreds of millions of proteins. To put this number into perspective, only 200,000 protein structures have been
-were predicted experimentally, and through AlphaFold2 there are currently 200 million protein structures in the AlphaFold database, predicted over a period of 3 years. However,
-via ESMFold, the ESM Metagenomic Atlas contains over 600 million protein structures predicted in just <b>2 weeks</b>!
+The ESMFold's accelerated protein folding capability and its independence from evolutionary related patterns have resulted in the creation of the first metagenomic atlas at an unprecedented scale, comprising hundreds of millions of protein structures. For context, there have been only 200,000 protein structures experimentally determined to date, and AlphaFold2's database has accumulated around 200 million predicted structures over three years. In contrast, the ESM Metagenomic Atlas boasts over 600 million protein structures, all predicted within a mere two weeks.
 
-This is the first time that metagenomic proteins from microbes found in soil, seawater or the ocean have been folded. Understandibly so, because
-such a feast was not possible before as metagenomic proteins, i.e. from nature, do not have evolutionarily related sequences. This is where ESMFold can shine, 
-as it does not rely on such genetic database search for a good protein structure prediction. As a result, more than X number of proteins folded from the metagnomic
-atlas are of high-confidence! 
+This remarkable achievement marks the first occasion that metagenomic proteins—those from microorganisms in environments like soil and seawater—have been folded on such a scale. ESMFold has achieved the prediction of unique protein structures that lacked any previously determined experimental counterparts. This success comes from its ability to predict protein structures independently of genetic database searches and therefore ESMFold is able to explore the protein landscape distant from existing knowledge. Consequently, an impressive number of over 113 million proteins from the metagenomic atlas have been classified with very high confidence.
 
-This Metagenomic Atlas unveils new protein structure that can potentially be leveraged for all sorts of tasks (name some).
+The Metagenomic Atlas opens up new frontiers in scientific research, uncovering novel protein structures that coould play an important role across various fields. These structures could be crucial in drug discovery, where understanding protein folding can lead to the development of new pharmaceuticals. They could also be pivotal in the advancement of bioengineering, providing insights into enzyme design for industrial processes, or in agriculture, aiding the creation of disease-resistant crops. Moreover, the atlas's potential applications in environmental science are significant, such as in bioremediation strategies where specific protein structures may help degrade pollutants.
 
-If you want to find more about ESM Metagenomic Atlas, I can recommend you to read through the official blog post of Meta themselves: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>
+All the predicted structures from this monumental effort are freely accessible in the ESM Metagenomic Atlas, available through a user-friendly web interface, API, and bulk download options. This open science resource facilitates both broad and detailed analyses, enabling researchers worldwide to explore the full breadth of the hundreds of millions of predicted structures.
+
+If you want to find more about ESM Metagenomic Atlas, I can recommend you to read through the official blog post of Meta themselves: <a href="https://ai.meta.com/blog/protein-folding-esmfold-metagenomics">https://ai.meta.com/blog/protein-folding-esmfold-metagenomics</a>.
 
 ## Conclusion
 ### Key Takeaways
