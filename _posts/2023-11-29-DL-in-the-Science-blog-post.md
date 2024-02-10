@@ -112,7 +112,7 @@ The following figure shows the contact map for every amino acid pair in the prot
  <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
 </figure>
 
-Immediately noticeable is that both contact maps are quite similar. This is quite remarkable because the model was not trained on that contact task, hence it is unsupervised! This showcases how the attention patterns correlates to the ground truth contact map!
+Immediately noticeable is that both contact maps are quite similar. This is quite remarkable because the model was not trained on that contact task, hence it is unsupervised! This showcases how the attention patterns in a transformer architecture correlates to the ground truth contact map!
 ### Understanding the behind-the-scenes: an intuitive Perspective
 To grasp why attention scores align closely with the contact map, revisiting the role of multiple sequence alignment (MSA) in AlphaFold2 is beneficial. Two principal properties are extracted from MSAs: evolutionary conservation and co-evolution, both critical for understanding protein structure. Evolutionary conservation is observed when an amino acid remains unchanged across species over evolution, highlighting its significance to the protein's function. Co-evolution occurs when a mutation in one amino acid necessitates a compensatory mutation in another to preserve the protein's structure. These properties impose vital constraints on the protein's ultimate 3D structure, aiding in precise structure prediction (see figure 3 and 4).
 <div style="display: flex;">
@@ -142,14 +142,19 @@ In masked language models (MLMs), directly extracting these properties is more c
 From left to right shows the model starting from 8M parameters to 15B parameters. On the x-axis the smaller model is depicted and on the y-axis the next bigger one. 
 Visible from the plots, there is a trend of improving perplexity for almost all proteins shown by the blueish color. Simultaneously, the unsupervised contact precision improves as well for most of the proteins with scale. This showcases that the perplexity is indeed highly correlated with the contact precision. 
 
-Interestingly, in the third and forth plot there are proteins, albeit just a few of them, were the performance decreases a lot. This was not further investigated by the authors, but I can give you a possible high-level explanation to that.
-When scaling up a model, a model is able to capture more sophisticated knowledge. While this leads to an improvement for most datapoints in the dataset, some datapoints (in our case proteins) could differ a lot from the overall data. The smaller models perform better, because it could be that across all data they share similar basic properties. Maybe you can think of it with the two languages English and German where most of the data is German. In low resolution, i.e. smaller scale, English and German have common properties such as their basic sentence structure Subject + Verb + Object, e.g. in English: "I read books." and in German: "Ich lese Bücher.". This basic sentence structure knowledge for example can be captured by smaller models. Now when we scale up the German model, it could be that the model can now adapt to the incorporation of modal verbs, that is the structure changes to: Subject + (modal verb) + Object + verb. Here the rare english sentences would perform worse, because in english the structure is still the same, e.g. in English: "I must read books." and in German: "I muss Bücher lesen".
+Interestingly, in the third and forth plot there are proteins, albeit just a few of them, were the performance decreases a lot. This was not further investigated by the authors, but I can give you a possible high-level explanation to that. 
+
+When a model is scaled up, it learns more complex information, improving performance on most data points in a dataset. However, some data points, like certain proteins in this context, may drastically underperform with larger models. This can happen because these outliers differ significantly from the majority of data. Smaller models might do better with such outliers because they focus on basic, common characteristics found across the dataset. Imagine this scenario with the English and German languages, where most data is in German. At a basic level, both languages follow the simple sentence structure of Subject + Verb + Object. For example, in English, we say "I read books," and in German, "Ich lese Bücher."
+
+This foundational structure is easily captured by smaller models. However, when sentences become more complex, such as those including a modal verb, the structure in German shifts to Subject + (modal verb) + Object + Verb, as in "Ich muss Bücher lesen." However, in English, the sentence structure doesn't change, even with the addition of a modal verb, as seen in "I must read books." This means that smaller models, which focus on basic structures, continue to perform well with these slightly more complex English sentences. If a model is trained mainly on German data and then scaled up, it learns to adjust for the modal verb placement, which negatively affect the performance on the rare English sentences with modal verbs. The scaled-up model is now better at handling complex German sentence structures, i.e. for sentences with modal verbs change structure from: "Subject + Verb + Object" to "Subject + (Modal Verb) + Object + Verb". However, applying this knowledge to the rare English sentences with modal verbs would in turn lead to a performance loss as the structure still is the same even with modal verbs for English.
+
+Coming back to the proteins that perform worse, we can't say for sure why it happens, but what should be clear is that these proteins should differ a lot from the general data and I think it is important to analyse such cases further to make sure that the model always gives a good prediction no matter which protein we want to infer.
 <figure style="width:35%;">
   <img src="/images/Scale2.jpg" alt="Scale Figure 2">
   <figcaption style="text-align: center;">Fig. 5 <b>(animated and own creation)</b></figcaption>
 </figure>
-![Comparison](/images/Scale2.jpg) 
-[describe and interpret]
+
+
 
 ### Comparison to SOTA Models: AlphaFold-2 and RosettaFold
 - Explain metric used: TM-Score
