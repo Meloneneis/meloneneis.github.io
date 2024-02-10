@@ -90,7 +90,7 @@ Both these models are then compared on datasets CAMEO and CASP14 on their TM-Sco
 ## Experiment Results of ESM-2 and ESMFold
 ### Unsupervised Contact Map for LY3W
 The following figure shows the contact map for every amino acid pair in the protein LY3W. The ground truth is depicted in the upper left whereas the contact prediction for the ESM-2 via the weighted attention map is shown in the bottom right half.
-<figure style="width:35%; margin-right: 10px;">
+<figure style="width:50%; margin-right: 10px;">
  <img src="/images/contactmap.jpg" alt="Contact Map for LY3W">
  <figcaption style="text-align: center;">Fig. 3 <b>(Source: Paper)</b></figcaption>
 </figure>
