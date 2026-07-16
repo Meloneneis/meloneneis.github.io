@@ -1,30 +1,73 @@
 ---
-title: 'Evolutionary-scale prediction of atomic level protein structure with a language model'
+title: 'Evolutionary-scale prediction of atomic-level protein structure with a language model'
 date: 2024-02-10
 permalink: /posts/2024/02/DL-in-the-Science/
 tags:
   - Deep Learning
   - Protein Structure
   - Bioinformatics
+excerpt: "A visual deep dive into ESM-2 and ESMFold — MSA-free folding, attention as contact maps, scaling laws, and the Metagenomic Atlas."
+header:
+  teaser: Architecture.gif
+classes: wide
 ---
 
-## Table of Contents
-1. [Introduction](#introduction)
-   1. [Understanding Protein Folding](#understanding-protein-folding)
-   2. [AlphaFold2: 60-years old challenge solved](#alphafold2-60-years-old-challenge-solved)
-2. [Limitation of AlphaFold2: The need for Speed and Independence](#limitation-of-alphafold2-the-need-for-speed-and-independence)
-3. [Methodology](#methodology)
-   1. [ESM-2: Unlocking the Protein Secrets via Transformers](#esm-2-unlocking-the-protein-secrets-via-transformers)
-   2. [ESMFold: Attaching the head to ESM-2 for Protein Structure Prediction](#esmfold-attaching-the-head-to-esm-2-for-protein-structure-prediction)
-4. [Experiment Results of ESM-2 and ESMFold](#experiment-results-of-esm-2-and-esmfold)
-   1. [ESM-2: Unsupervised Contact Map for Protein 3LYW](#unsupervised-contact-map-for-ly3w)
-   2. [ESM-2: Understanding the behind-the-scenes: An intuitive perspective](#understanding-the-behind-the-scenes-an-intuitive-perspective)
-   3. [ESM-2: From Millions to Billions Parameters: Understanding the Impact of Scale](#from-millions-to-billions-parameters-understanding-the-impact-of-scale)
-   4. [ESMFold: Comparison to SOTA Models: AlphaFold-2 and RosettaFold](#comparison-to-sota-models-alphafold-2-and-rosettafold)
-5. [Scientific Contribution: ESM Metagenomic Atlas](#scientific-contribution-esm-metagenomic-atlas)
-6. [Conclusion](#conclusion)
-   1. [Key Takeaways](#key-takeaways)
-   2. [Final Remark](#final-remark)
+<style>
+  /* Post-local motion polish (pairs with blog-motion.js) */
+  .page__content .toc-card {
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #0d5c63;
+    background: linear-gradient(135deg, rgba(13,92,99,0.06), rgba(196,92,38,0.05));
+  }
+  .page__content .toc-card h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
+  .page__content figure {
+    margin: 2rem auto;
+  }
+  .page__content figure img {
+    border-radius: 2px;
+    box-shadow: 0 12px 40px rgba(18,24,32,0.12);
+  }
+  .page__content .callout-result {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #0a1628;
+    color: #f3efe6;
+    border-radius: 2px;
+  }
+  .page__content .callout-result strong {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e08a55;
+    margin-bottom: 0.5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .page__content figure img { box-shadow: none; }
+  }
+</style>
+
+<div class="toc-card">
+  <h2>On this page</h2>
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#limitation-of-alphafold2-the-need-for-speed-and-independence">Limitation of AlphaFold2</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#experiment-results-of-esm-2-and-esmfold">Experiment results</a></li>
+    <li><a href="#scientific-contribution-esm-metagenomic-atlas">ESM Metagenomic Atlas</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ol>
+</div>
+
+<div class="callout-result">
+  <strong>Reading note</strong>
+  Scroll slowly — figures animate in as they enter the viewport, and a progress bar tracks how far you are through the piece.
+</div>
 
 ## Introduction
 ### Understanding Protein Folding

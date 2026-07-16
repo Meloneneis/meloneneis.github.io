@@ -9,51 +9,40 @@ redirect_from:
 
 {% include base_path %}
 
+Kevin Van Le
+======
+Machine learning engineer — NLP, code models, reinforcement learning, applied LLM systems.
+
+- Email: [lekevinvan@gmail.com](mailto:lekevinvan@gmail.com)
+- GitHub: [Meloneneis](https://github.com/Meloneneis)
+- Hugging Face: [meloneneneis](https://huggingface.co/meloneneneis)
+- Portfolio: [meloneneis.github.io](https://meloneneis.github.io)
+
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* Bachelor's thesis: **German Code Search through Knowledge Transfer** — adapting GraphCodeBERT via tokenizer adaptation, continued MLM pre-training, German GitHub dataset construction, and retrieval fine-tuning. Public model: [`graphcodebert-base-german`](https://huggingface.co/meloneneneis/graphcodebert-base-german).
 
-Work experience
+Selected projects
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* **German Code Retrieval** — End-to-end knowledge transfer for German–code search ([repo](https://github.com/Meloneneis/german-code-retrieval)).
+* **Semantic Plausibility (SHROOM-inspired)** — Reward-model fine-tuning and synthetic labeling for hallucination / implausibility detection ([repo](https://github.com/Meloneneis/SemanticPlausibilitySS24)).
+* **DQN Racing** — Configurable vision DQN with dueling option, mixed-precision benchmarks, W&B tracking ([repo](https://github.com/Meloneneis/DQN_Training)).
+* **CV Agent** — Spec-driven modular LLM app (Flask + React) for job-tailored CVs with local/cloud providers ([v2](https://github.com/Meloneneis/cv_agent_v2)).
+* **Legal OCR** — Fine-tuning / inference for German legal document scans ([repo](https://github.com/Meloneneis/glm_ocr)).
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-  
+Writing
+======
+* [Evolutionary-scale prediction of atomic-level protein structure with a language model]({{ base_path }}/posts/2024/02/DL-in-the-Science/) — technical deep dive into ESM-2 / ESMFold with original animated figures.
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **ML / DL:** PyTorch, Transformers, representation learning, MLM, retrieval, RL (DQN)
+* **NLP:** code search, semantic plausibility, OCR, evaluation pipelines
+* **Systems:** Python, Flask, React, experiment tracking (W&B), GPU training
+* **Languages:** German, English
 
-Publications
+Portfolio
 ======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+<ul>{% for post in site.portfolio %}
+  {% include archive-single.html %}
+{% endfor %}</ul>
