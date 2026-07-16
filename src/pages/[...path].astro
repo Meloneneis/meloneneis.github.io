@@ -1,0 +1,39 @@
+---
+export function getStaticPaths() {
+  const redirects = [
+    { from: 'posts/2024/02/DL-in-the-Science', to: '/writing/esmfold/' },
+    { from: 'portfolio', to: '/#work' },
+    { from: 'portfolio/german-code-search', to: '/work/german-code-search/' },
+    { from: 'portfolio/semantic-plausibility', to: '/work/semantic-plausibility/' },
+    { from: 'portfolio/cv-agent', to: '/work/cv-agent/' },
+    { from: 'portfolio/dqn-racing', to: '/work/dqn-racing/' },
+    { from: 'portfolio/glm-ocr', to: '/work/glm-ocr/' },
+    { from: 'year-archive', to: '/writing/' },
+    { from: 'resume', to: '/cv/' },
+    { from: 'about', to: '/' },
+  ];
+  return redirects.map((r) => ({
+    params: { path: r.from },
+    props: { to: r.to },
+  }));
+}
+
+const { to } = Astro.props;
+const absolute = new URL(to, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <link rel="canonical" href={absolute} />
+    <title>Redirecting…</title>
+    <script is:inline define:vars={{ to }}>
+      location.replace(to);
+    </script>
+  </head>
+  <body>
+    <p>Moved to <a href={to}>{to}</a>.</p>
+  </body>
+</html>

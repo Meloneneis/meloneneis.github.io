@@ -1,6 +1,10 @@
-_site/
-.bundle/
-vendor/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+node_modules
+dist
+.DS_Store
+_site
+.bundle
+vendor
+.astro
+.env
+.env.*
+!.env.example
