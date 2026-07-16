@@ -1,0 +1,47 @@
+---
+description: Design and content rules for Kevin Van Le's GitHub Pages portfolio
+globs:
+  - "_pages/**"
+  - "_portfolio/**"
+  - "_posts/**"
+  - "assets/css/portfolio*"
+  - "assets/js/portfolio*"
+  - "assets/js/protein*"
+  - "assets/js/blog*"
+  - "_layouts/portfolio*"
+  - "_config.yml"
+alwaysApply: false
+---
+
+# Kevin Van Le Portfolio — Design System
+
+## Identity
+- Brand: **Kevin Van Le** must be the strongest signal in the first viewport.
+- Positioning: ML engineer / researcher — NLP, code models, RL, applied AI systems.
+- Site: Jekyll on GitHub Pages (`meloneneis.github.io`). Prefer progressive enhancement over heavy frameworks.
+
+## Visual direction (anti AI-slop)
+Do **not** use: purple/indigo gradients, Inter/Roboto/Arial, warm cream+#terracotta serif combo, broadsheet hairline newspaper layouts, neon cyan+violet “neural” kits, glassmorphism card grids, floating badge overlays on heroes, emoji decoration.
+
+### Tokens
+- Ink: `#121820`
+- Paper: `#eef1f4` (cool stone, not warm cream)
+- Deep stage (hero/3D): `#0a1628`
+- Accent: `#0d5c63` (deep teal)
+- Signal: `#c45c26` (oxide, sparingly — CTAs, highlights)
+- Mono labels: IBM Plex Mono; display: Newsreader; UI: Source Sans 3
+
+### Layout
+- Hero: full-bleed 3D as background; brand + one headline + one sentence + one CTA group only.
+- No cards in hero. Cards only when interaction needs a container.
+- Asymmetric work layouts preferred over equal 3-column card grids.
+- One job per section.
+
+### Motion
+- Prefer purposeful motion: 3D parallax, scroll reveals, blog figure entrance.
+- Always respect `prefers-reduced-motion`.
+
+## Content truthfulness
+- Only claim projects, results, and credentials backed by Kevin’s repos, thesis, or writing.
+- Known anchors: German code search thesis + HF `graphcodebert-base-german`, SemanticPlausibility/SHROOM, DQN racing, CV Agent, glm_ocr, ESMFold blog.
+- Do not invent employers, degrees, or metrics.

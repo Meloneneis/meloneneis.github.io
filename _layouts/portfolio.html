@@ -1,0 +1,29 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 | default: 'en' }}" class="no-js portfolio-root">
+  <head>
+    <meta charset="utf-8">
+    {% include seo.html %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ base_path }}/assets/css/portfolio.css">
+    <link rel="shortcut icon" href="{{ base_path }}/images/favicon.ico">
+    <meta name="theme-color" content="#0a1628">
+  </head>
+  <body class="portfolio-body" data-base="{{ base_path }}">
+    {% include browser-upgrade.html %}
+    {{ content }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="{{ base_path }}/assets/js/protein-scene.js" defer></script>
+    <script src="{{ base_path }}/assets/js/portfolio.js" defer></script>
+    {% include analytics.html %}
+  </body>
+</html>
