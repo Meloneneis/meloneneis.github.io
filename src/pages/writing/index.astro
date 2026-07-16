@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title="Writing · Kevin Van Le" description="Technical essays by Kevin Van Le.">
+  <header class="page-hero">
+    <div class="wrap">
+      <a href="/">← Home</a>
+      <h1>Writing</h1>
+      <p>One longform essay so far — architecture, ablations, and failure modes.</p>
+    </div>
+  </header>
+  <div class="wrap" style="padding: 3rem 0 5rem;">
+    {posts.map((p) => (
+      <a class="writing-teaser" href={`/writing/${p.id}/`} style="margin-bottom: 0;">
+        <span class="writing-teaser__meta">
+          {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+        </span>
+        <h2 class="writing-teaser__title">{p.data.title}</h2>
+        <p class="writing-teaser__excerpt">{p.data.description}</p>
+      </a>
+    ))}
+  </div>
+</Base>

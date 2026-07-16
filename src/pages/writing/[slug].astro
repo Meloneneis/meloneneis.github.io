@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing');
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const date = entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base title={`${entry.data.title} · Kevin Van Le`} description={entry.data.description}>
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+  <header class="page-hero">
+    <div class="wrap">
+      <a href="/writing/">← Writing</a>
+      <p class="section__label" style="color: var(--stage-fg-2); margin-top: 1.25rem;">{date}</p>
+      <h1>{entry.data.title}</h1>
+      <p>{entry.data.description}</p>
+    </div>
+  </header>
+  <article class="prose" id="article">
+    <Content />
+  </article>
+  <script>
+    const bar = document.getElementById('reading-progress');
+    const article = document.getElementById('article');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function update() {
+      if (!bar || !article) return;
+      const rect = article.getBoundingClientRect();
+      const total = article.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 1));
+      bar.style.width = `${(scrolled / Math.max(total, 1)) * 100}%`;
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    if (!reduced && 'IntersectionObserver' in window) {
+      const figs = article?.querySelectorAll('figure') ?? [];
+      figs.forEach((f) => {
+        (f as HTMLElement).style.opacity = '0';
+        (f as HTMLElement).style.transform = 'translateY(12px)';
+        (f as HTMLElement).style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const el = e.target as HTMLElement;
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            io.unobserve(el);
+          }
+        });
+      }, { threshold: 0.12 });
+      figs.forEach((f) => io.observe(f));
+    }
+  </script>
+</Base>

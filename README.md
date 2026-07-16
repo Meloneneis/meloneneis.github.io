@@ -1,37 +1,27 @@
-# Kevin Van Le — Portfolio site
+# Kevin Van Le — portfolio
 
-Personal GitHub Pages site for **Kevin Van Le** (`meloneneis.github.io`).
+Astro site for [meloneneis.github.io](https://meloneneis.github.io).
 
-Built on a Jekyll academicpages base, with a custom portfolio homepage:
+Design & architecture: [`docs/PORTFOLIO_PLAN.md`](docs/PORTFOLIO_PLAN.md) (APPROVED after critique loops).
 
-- Interactive **Three.js protein-backbone** hero
-- Case studies for thesis + applied ML projects
-- Blog post motion (progress bar + figure reveals)
-- Design system documented in `.cursor/rules/portfolio-design.mdc`
-
-## Local development
+## Develop
 
 ```bash
-bundle install
-bundle exec jekyll serve
+npm ci
+npm run dev
 ```
 
-Open `http://localhost:4000`.
+## Build
 
-## Key paths
+```bash
+npm run build
+node scripts/check-redirects.mjs
+npm run preview
+```
 
-| Path | Role |
-|------|------|
-| `_pages/about.md` | Homepage (portfolio layout) |
-| `_layouts/portfolio.html` | Homepage shell |
-| `_layouts/portfolio-case.html` | Project case studies |
-| `assets/css/portfolio.css` | Design tokens + layout |
-| `assets/js/protein-scene.js` | 3D hero |
-| `assets/js/portfolio.js` | Scroll reveals / counters |
-| `assets/js/blog-motion.js` | Blog animations |
-| `_portfolio/` | Case study markdown |
-| `_posts/` | Blog |
+## Deploy
 
-## Design intent
+GitHub Actions → Pages (`deploy-pages`).  
+Cutover: set Pages source to **GitHub Actions**, then merge to `master`.
 
-Archival lab / structural reading — cool stone paper, prussian stage, teal + oxide accents, Newsreader + Source Sans 3 + IBM Plex Mono. Avoid purple neon “AI portfolio” tropes.
+Legacy Jekyll academicpages is quarantined in `_legacy/` (not deployed).

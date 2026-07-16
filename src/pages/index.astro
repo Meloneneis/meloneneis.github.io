@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroMotif from '../components/HeroMotif.astro';
+import { getCollection } from 'astro:content';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const flagship = work.find((w) => w.data.tier === 'flagship')!;
+const rest = work.filter((w) => w.data.tier !== 'flagship');
+---
+
+<Base title="Kevin Van Le">
+  <section class="hero">
+    <div class="hero__motif"><HeroMotif /></div>
+    <div class="hero__veil"></div>
+    <div class="wrap hero__content">
+      <h1 class="hero__brand">Kevin Van&nbsp;Le</h1>
+      <p class="hero__headline">Bachelor thesis on German code search — shipped as a public GraphCodeBERT model.</p>
+      <p class="hero__lede">
+        I build NLP and applied ML systems end-to-end: retrieval, evaluation, agents, and document understanding.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#work">View work</a>
+        <a class="btn btn--ghost-dark" href="https://github.com/Meloneneis" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn--ghost-dark" href="https://huggingface.co/meloneneneis" target="_blank" rel="noopener">Hugging Face</a>
+        <a class="btn btn--ghost-dark" href="mailto:lekevinvan@gmail.com">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <p class="section__label">Work</p>
+      <h2 class="section__title">Selected work</h2>
+      <p class="section__lede">
+        One thesis-grade case with a public artifact, then shorter projects that show evaluation, agents, RL, and OCR.
+      </p>
+
+      <article class="flagship">
+        <div>
+          <p class="section__label">Flagship · Thesis</p>
+          <h3 class="flagship__title">{flagship.data.title}</h3>
+          <p class="flagship__body">{flagship.data.summary}</p>
+          <p class="flagship__meta">{flagship.data.tags.join(' · ')}</p>
+          <div class="hero__cta">
+            <a class="btn btn--solid-light" href={`/work/${flagship.id}/`}>Case study</a>
+            {flagship.data.model && (
+              <a class="btn btn--ghost-light" href={flagship.data.model} target="_blank" rel="noopener">Hugging Face model</a>
+            )}
+          </div>
+        </div>
+        <p class="flagship__aside">
+          <strong>Public artifact</strong>
+          <a href={flagship.data.model} target="_blank" rel="noopener">graphcodebert-base-german</a>
+          — German-adapted code encoder for retrieval workflows.
+        </p>
+      </article>
+
+      <div class="work-list">
+        {rest.map((w) => (
+          <a class="work-row" href={`/work/${w.id}/`}>
+            <span class="work-row__tier">{w.data.tier === 'supporting' ? 'Supporting' : 'Brief'}</span>
+            <div>
+              <h3 class="work-row__title">{w.data.title}</h3>
+              <p class="work-row__blurb">{w.data.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mute" id="writing">
+    <div class="wrap">
+      <p class="section__label">Writing</p>
+      <h2 class="section__title">ESMFold deep dive</h2>
+      <p class="section__lede">
+        How I read a research system — ESMFold’s MSA-free bet — with original animated figures.
+      </p>
+      <a class="writing-teaser" href="/writing/esmfold/">
+        <span class="writing-teaser__meta">Feb 2024 · Essay</span>
+        <h3 class="writing-teaser__title">Evolutionary-scale protein structure with a language model</h3>
+        <p class="writing-teaser__excerpt">
+          Architecture, attention-as-contact-maps, scaling behavior, and the Metagenomic Atlas.
+        </p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div class="about__portrait">
+        <img src="/images/profile.png" alt="Portrait of Kevin Van Le" width="720" height="720" loading="lazy" />
+      </div>
+      <div class="about__copy">
+        <p class="section__label">About</p>
+        <h2 class="section__title">Background</h2>
+        <p>
+          I build NLP and applied ML systems — retrieval, evaluation, agents, and document pipelines — with a bias toward artifacts other people can run.
+        </p>
+        <p>
+          My strongest public work is my bachelor thesis on German code search, released as
+          <a href="https://huggingface.co/meloneneneis/graphcodebert-base-german" target="_blank" rel="noopener">graphcodebert-base-german</a>
+          on Hugging Face.
+        </p>
+        <p>
+          I’m looking for ML / NLP engineering roles where representation learning meets production constraints.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mute" id="contact">
+    <div class="wrap contact">
+      <div>
+        <p class="section__label">Contact</p>
+        <h2 class="section__title">Start a conversation</h2>
+        <ul class="contact__links">
+          <li><a href="mailto:lekevinvan@gmail.com">lekevinvan@gmail.com</a></li>
+          <li><a href="https://github.com/Meloneneis" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://huggingface.co/meloneneneis" target="_blank" rel="noopener">Hugging Face</a></li>
+          <li><a href="/cv/">CV</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

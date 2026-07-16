@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="CV · Kevin Van Le" description="CV — Kevin Van Le.">
+  <div class="cv">
+    <h1>Kevin Van Le</h1>
+    <p class="tagline">Builds NLP and applied ML systems — retrieval, evaluation, agents, document understanding.</p>
+    <ul class="links">
+      <li><a href="mailto:lekevinvan@gmail.com">lekevinvan@gmail.com</a></li>
+      <li><a href="https://github.com/Meloneneis">GitHub</a></li>
+      <li><a href="https://huggingface.co/meloneneneis">Hugging Face</a></li>
+      <li><a href="https://meloneneis.github.io">Portfolio</a></li>
+    </ul>
+
+    <h2>Background</h2>
+    <ul>
+      <li>
+        Bachelor thesis: <strong>German Code Search through Knowledge Transfer</strong> —
+        GraphCodeBERT adaptation (tokenizer, MLM pre-training, German GitHub data, retrieval fine-tuning).
+        Public model:
+        <a href="https://huggingface.co/meloneneneis/graphcodebert-base-german">graphcodebert-base-german</a>.
+      </li>
+    </ul>
+
+    <h2>Selected projects</h2>
+    <ul>
+      <li><a href="/work/german-code-search/">German code search</a> — thesis + Hugging Face checkpoint</li>
+      <li><a href="/work/semantic-plausibility/">Semantic plausibility</a> — hallucination / implausibility detection</li>
+      <li><a href="/work/cv-agent/">CV Agent</a> — spec-driven LLM application</li>
+      <li><a href="/work/dqn-racing/">DQN racing</a> — vision-based reinforcement learning</li>
+      <li><a href="/work/glm-ocr/">Legal OCR</a> — German document fine-tuning</li>
+    </ul>
+
+    <h2>Skills</h2>
+    <dl>
+      <dt>Machine learning</dt>
+      <dd>PyTorch, Transformers, representation learning, MLM, retrieval, DQN</dd>
+      <dt>NLP applications</dt>
+      <dd>Code search, semantic plausibility, OCR, evaluation pipelines</dd>
+      <dt>Systems</dt>
+      <dd>Python, Flask, React, experiment tracking (W&amp;B), GPU training</dd>
+      <dt>Languages</dt>
+      <dd>German, English</dd>
+    </dl>
+
+    <h2>Writing</h2>
+    <ul>
+      <li>
+        <a href="/writing/esmfold/">ESM-2 / ESMFold deep dive</a> — architecture, scaling, Metagenomic Atlas, original animated figures
+      </li>
+    </ul>
+  </div>
+</Base>
